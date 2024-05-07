@@ -105,7 +105,7 @@ def test(config):
     
     
     if config.rep:
-        rep_model = reparameterize()
+        rep_model = reparameterize(config, net, device)
         net = rep_model
 
     net.eval()

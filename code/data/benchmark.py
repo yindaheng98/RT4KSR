@@ -71,3 +71,7 @@ def b100(config):
 
 def urban100(config):
     return Benchmark(config.dataroot, "Urban100", mode="val", scale=config.scale, rgb_range=config.rgb_range)
+
+
+def div2k(config):
+    return Benchmark(config.dataroot, "DIV2K", mode="val", scale=config.scale, rgb_range=config.rgb_range)
