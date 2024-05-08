@@ -31,6 +31,19 @@
                 "--benchmark=div2k_train",
                 "--checkpoint-id=rt4ksr_x2_small"
             ]
+        },
+        {
+            "name": "DIV2K2dual",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "code/scripts/benchmark2dual.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--dataroot=data",
+                "--scale=2",
+                "--name=div2k",
+                "--mode=val"
+            ]
         }
     ]
 }
