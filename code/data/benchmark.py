@@ -79,3 +79,11 @@ def div2k(config):
 
 def div2k_train(config):
     return Benchmark(config.dataroot, "DIV2K", mode="train", scale=config.scale, rgb_range=config.rgb_range)
+
+
+def nerfout(config):
+    return Benchmark(config.dataroot, "nerfout", mode="val", scale=config.scale, rgb_range=config.rgb_range)
+
+
+def nerfout_train(config):
+    return Benchmark(config.dataroot, "nerfout", mode="train", scale=config.scale, rgb_range=config.rgb_range)

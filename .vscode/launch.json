@@ -90,6 +90,35 @@
             ]
         },
         {
+            "name": "test NeRFout x4",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "code/test.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--dataroot=data/coffee_martini-kmeans-6",
+                "--scale=4",
+                "--arch=rt4ksr_rep",
+                "--benchmark=nerfout_train",
+                "--checkpoint-id=rep_model_rt4ksr_x4",
+                "--show"
+            ]
+        },
+        {
+            "name": "train NeRFout x4",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "code/train.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--dataroot=data/coffee_martini-kmeans-6",
+                "--scale=4",
+                "--arch=rt4ksr_rep",
+                "--benchmark=nerfout_train",
+                "--checkpoint-id=rt4ksr_x4"
+            ]
+        },
+        {
             "name": "test NeRFout x4 Dual",
             "type": "debugpy",
             "request": "launch",
