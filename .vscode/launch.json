@@ -151,7 +151,7 @@
             "name": "DIV2K2dual",
             "type": "debugpy",
             "request": "launch",
-            "program": "code/scripts/benchmark2dual.py",
+            "program": "scripts/benchmark2dual.py",
             "console": "integratedTerminal",
             "args": [
                 "--dataroot=data",
@@ -164,7 +164,7 @@
             "name": "NeRFout2dual",
             "type": "debugpy",
             "request": "launch",
-            "program": "code/scripts/nerfout2dual.py",
+            "program": "scripts/nerfout2dual.py",
             "console": "integratedTerminal",
             "args": [
                 "--hrsrcroot=D:/MyPrograms/instant-ngp-scaffold/results/grayscale/coffee_martini-color-frame1-base",
