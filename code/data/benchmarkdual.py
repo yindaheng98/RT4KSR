@@ -71,3 +71,11 @@ def div2kdual(config):
 
 def div2kdual_train(config):
     return BenchmarkDual(config.dataroot, "DIV2K", mode="train", scale=config.scale, rgb_range=config.rgb_range)
+
+
+def nerfoutdual(config):
+    return BenchmarkDual(config.dataroot, "nerfout", mode="val", scale=config.scale, rgb_range=config.rgb_range)
+
+
+def nerfoutdual_train(config):
+    return BenchmarkDual(config.dataroot, "nerfout", mode="train", scale=config.scale, rgb_range=config.rgb_range)
