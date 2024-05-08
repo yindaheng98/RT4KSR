@@ -30,7 +30,8 @@
                 "--dataroot=data",
                 "--scale=2",
                 "--arch=rt4ksr_rep",
-                "--benchmark=div2k_train"
+                "--benchmark=div2k_train",
+                "--checkpoint-id=rt4ksr_x2_small"
             ]
         }
     ]

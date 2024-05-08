@@ -18,7 +18,7 @@ def train_parser():
     parser.add_argument("--dataroot", type=str, default=os.path.join(pathlib.Path.home(), "datasets/image_restoration"))
     parser.add_argument("--benchmark", type=str, nargs="+", default=["ntire23rtsr"])
     parser.add_argument("--checkpoints-root", type=str, default="code/checkpoints")
-    parser.add_argument("--checkpoint-id", type=str, default="rt4ksr_x2")
+    parser.add_argument("--checkpoint-id", type=str, default=None)
     parser.add_argument("--batch_size", type=int, default=1)
     parser.add_argument("--num_workers", type=int, default=4)
     
@@ -87,7 +87,9 @@ def train(config):
 
             # Adjust learning weights
             optimizer.step()
-
+    if config.checkpoint_id:
+        checkpoint = dict(state_dict=net.state_dict())
+        torch.save(checkpoint, os.path.join("code/checkpoints", config.checkpoint_id + ".pth"))
 
 if __name__ == "__main__":
     args = train_parser()
