@@ -19,6 +19,19 @@
                 "--is-train",
                 "--rep"
             ]
+        },
+        {
+            "name": "train DIV2K x2",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "code/train.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--dataroot=data",
+                "--scale=2",
+                "--arch=rt4ksr_rep",
+                "--benchmark=div2k_train"
+            ]
         }
     ]
 }

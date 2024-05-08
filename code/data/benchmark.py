@@ -75,3 +75,7 @@ def urban100(config):
 
 def div2k(config):
     return Benchmark(config.dataroot, "DIV2K", mode="val", scale=config.scale, rgb_range=config.rgb_range)
+
+
+def div2k_train(config):
+    return Benchmark(config.dataroot, "DIV2K", mode="train", scale=config.scale, rgb_range=config.rgb_range)
