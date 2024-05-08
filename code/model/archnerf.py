@@ -12,6 +12,33 @@ class NeRFRT4KSR_Rep(RT4KSR_Rep):
         self.num_channels_color = num_channels_color
         self.num_channels_gray = num_channels_gray
 
+    def forward(self, x):
+        color = x[:, 0:self.num_channels_color]
+        
+        # Following is just copy from RT4KSR_Rep
+        # stage 1
+        hf = x - self.gaussian(x)
+
+        # unshuffle to save computation
+        x_unsh = self.down(x)
+        hf_unsh = self.down(hf)
+
+        shallow_feats_hf = self.head(hf_unsh)
+        shallow_feats_lr = self.head(x_unsh)
+
+        # stage 2
+        deep_feats = self.body(shallow_feats_lr)
+        hf_feats = self.hfb(shallow_feats_hf)
+
+        # stage 3
+        if self.forget:
+            deep_feats = self.tail(self.gamma * deep_feats + hf_feats)
+        else:
+            deep_feats = self.tail(deep_feats)
+
+        out = self.upsample(deep_feats)
+        return out + color
+
 ####################################
 # RETURN INITIALIZED MODEL INSTANCES
 ####################################
