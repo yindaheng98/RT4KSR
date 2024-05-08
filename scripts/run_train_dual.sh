@@ -1,0 +1,19 @@
+DATAROOT=../instant-ngp-scaffold/results/grayscale
+convert() {
+    python scripts/nerfout2dual.py \
+        --dataroot=data/$1 \
+        --hrsrcroot=$2 \
+        --grsrcroot=$3 \
+        --name=nerfout \
+        --mode=train
+}
+# convert coffee_martini-kmeans-6 $DATAROOT/coffee_martini-gray-frame1-base $DATAROOT/coffee_martini-gray-frame1-base/kmeans-6 # debug
+traindual() {
+    python code/train.py \
+        --dataroot=data/$1 \
+        --scale=$2 \
+        --arch=nerfrt4ksr_rep \
+        --benchmark=nerfoutdual_train \
+        --checkpoint-id=$1/nerfrt4ksr_x"$2"_dual
+}
+# traindual coffee_martini-kmeans-6 2 # debug

@@ -89,6 +89,8 @@ def reparameterize(config, net, device, save_rep_checkpoint=False):
     rep_model.load_state_dict(rep_state_dict, strict=True)
     if config.checkpoint_id:
         checkpoint = dict(state_dict=rep_state_dict)
+        checkpoint_path = os.path.join("code/checkpoints", config.checkpoint_id + ".pth")
+        os.makedirs(os.path.dirname(checkpoint_path), exist_ok=True)
         torch.save(checkpoint, os.path.join("code/checkpoints", "rep_model_" + config.checkpoint_id + ".pth"))
 
     return rep_model
@@ -146,6 +148,8 @@ def train(config):
             optimizer.step()
     if config.checkpoint_id:
         checkpoint = dict(state_dict=net.state_dict())
+        checkpoint_path = os.path.join("code/checkpoints", config.checkpoint_id + ".pth")
+        os.makedirs(os.path.dirname(checkpoint_path), exist_ok=True)
         torch.save(checkpoint, os.path.join("code/checkpoints", config.checkpoint_id + ".pth"))
         reparameterize(config, net, device, True)
 
