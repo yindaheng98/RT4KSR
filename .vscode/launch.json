@@ -56,7 +56,7 @@
                 "--dataroot=data",
                 "--scale=2",
                 "--arch=nerfrt4ksr_rep",
-                "--benchmark=div2kdual_train",
+                "--benchmark=nerfout-coffee_martini",
                 "--checkpoint-id=rt4ksr_x2_dual"
             ]
         },
@@ -82,8 +82,8 @@
             "args": [
                 "--hrsrcroot=D:/MyPrograms/instant-ngp-scaffold/results/grayscale/coffee_martini-color-frame1-base",
                 "--grsrcroot=D:/MyPrograms/instant-ngp-scaffold/results/grayscale/coffee_martini-gray-frame1-base/kmeans-6",
-                "--dataroot=data",
-                "--name=nerfout-coffee_martini",
+                "--dataroot=data/coffee_martini-kmeans-6",
+                "--name=nerfout",
                 "--mode=train"
             ]
         }
