@@ -33,7 +33,7 @@ def train_parser():
                         help="Save checkpoint of reparameterized model intance.")
 
     # data
-    parser.add_argument("--scale", type=int, default=2, choices=[2, 3])
+    parser.add_argument("--scale", type=int, default=2, choices=[2, 3, 4])
     parser.add_argument("--rgb-range", type=float, default=1.0)
 
     return parser.parse_args()
