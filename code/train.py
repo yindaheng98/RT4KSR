@@ -88,7 +88,7 @@ def reparameterize(config, net, device, save_rep_checkpoint=False):
 
     rep_model.load_state_dict(rep_state_dict, strict=True)
     if save_rep_checkpoint:
-        torch.save(rep_state_dict, f"rep_model_{config.checkpoint_id}.pth")
+        torch.save(rep_state_dict, os.path.join("code/checkpoints", f"rep_model_{config.checkpoint_id}.pth"))
 
     return rep_model
 
