@@ -21,20 +21,22 @@ def train_parser():
     parser.add_argument("--checkpoint-id", type=str, default=None)
     parser.add_argument("--batch_size", type=int, default=1)
     parser.add_argument("--num_workers", type=int, default=4)
-    
+
     # model definitions
     parser.add_argument("--arch", type=str, default="rt4ksr_rep")
     parser.add_argument("--feature-channels", type=int, default=24)
     parser.add_argument("--num-blocks", type=int, default=4)
     parser.add_argument("--act-type", type=str, default="gelu", choices=["relu", "lrelu", "gelu"])
-    parser.add_argument("--is-train", action="store_true", help="Switch between training and inference mode for reparameterizable blocks.")
+    parser.add_argument("--is-train", action="store_true",
+                        help="Switch between training and inference mode for reparameterizable blocks.")
     parser.add_argument("--rep", action="store_true", help="Run inference with reparameterized version.")
-    parser.add_argument("--save-rep-checkpoint", action="store_true", help="Save checkpoint of reparameterized model intance.")
+    parser.add_argument("--save-rep-checkpoint", action="store_true",
+                        help="Save checkpoint of reparameterized model intance.")
 
     # data
-    parser.add_argument("--scale", type=int, default=2, choices=[2,3])
+    parser.add_argument("--scale", type=int, default=2, choices=[2, 3])
     parser.add_argument("--rgb-range", type=float, default=1.0)
-    
+
     return parser.parse_args()
 
 
@@ -79,7 +81,7 @@ def train(config):
 
             # run method
             out = net(lr_img)
-            
+
             # Compute the loss and its gradients
             loss = loss_fn(out, hr_img)
             loss.backward()
@@ -90,6 +92,7 @@ def train(config):
     if config.checkpoint_id:
         checkpoint = dict(state_dict=net.state_dict())
         torch.save(checkpoint, os.path.join("code/checkpoints", config.checkpoint_id + ".pth"))
+
 
 if __name__ == "__main__":
     args = train_parser()
