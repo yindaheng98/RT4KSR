@@ -13,7 +13,8 @@ from model.modules import *
    
 class RT4KSR_Rep(nn.Module):
     def __init__(self,
-                 num_channels, 
+                 num_channels_in, 
+                 num_channels_out, 
                  num_feats, 
                  num_blocks,
                  upscale,
@@ -30,7 +31,7 @@ class RT4KSR_Rep(nn.Module):
         
         self.down = nn.PixelUnshuffle(2)
         self.up = nn.PixelShuffle(2)
-        self.head = nn.Sequential(nn.Conv2d(num_channels * (2**2), num_feats, 3, padding=1))
+        self.head = nn.Sequential(nn.Conv2d(num_channels_in * (2**2), num_feats, 3, padding=1))
         
         
         hfb = []
@@ -58,7 +59,7 @@ class RT4KSR_Rep(nn.Module):
         self.tail = nn.Sequential(*tail)
                     
         self.upsample = nn.Sequential(
-            nn.Conv2d(num_feats, num_channels * ((2 * upscale) ** 2), 3, padding=1),
+            nn.Conv2d(num_feats, num_channels_out * ((2 * upscale) ** 2), 3, padding=1),
             nn.PixelShuffle(upscale*2)            
         )
         
@@ -93,7 +94,8 @@ class RT4KSR_Rep(nn.Module):
 
 def rt4ksr_rep(config):
     act = activation(config.act_type)
-    model = RT4KSR_Rep(num_channels=3, 
+    model = RT4KSR_Rep(num_channels_in=3, 
+                       num_channels_out=3, 
                        num_feats=config.feature_channels, 
                        num_blocks=config.num_blocks, 
                        upscale=config.scale,
