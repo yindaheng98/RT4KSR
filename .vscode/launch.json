@@ -72,6 +72,20 @@
                 "--name=div2k",
                 "--mode=train"
             ]
+        },
+        {
+            "name": "NeRFout2dual",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "code/scripts/nerfout2dual.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--hrsrcroot=D:/MyPrograms/instant-ngp-scaffold/results/grayscale/coffee_martini-color-frame1-base",
+                "--grsrcroot=D:/MyPrograms/instant-ngp-scaffold/results/grayscale/coffee_martini-gray-frame1-base/kmeans-6",
+                "--dataroot=data",
+                "--name=nerfout-coffee_martini",
+                "--mode=train"
+            ]
         }
     ]
 }
