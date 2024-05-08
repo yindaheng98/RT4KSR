@@ -17,3 +17,12 @@ traindual() {
         --checkpoint-id=$1/nerfrt4ksr_x"$2"_dual
 }
 # traindual coffee_martini-kmeans-6 2 # debug
+trainsingle() {
+    python code/train.py \
+        --dataroot=data/$1 \
+        --scale=$2 \
+        --arch=rt4ksr_rep \
+        --benchmark=nerfout_train \
+        --checkpoint-id=$1/rt4ksr_x"$2"_dual
+}
+# trainsingle coffee_martini-kmeans-6 2 # debug
