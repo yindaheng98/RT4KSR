@@ -11,6 +11,7 @@ def base_parser():
     parser.add_argument("--benchmark", type=str, nargs="+", default=["ntire23rtsr"])
     parser.add_argument("--checkpoints-root", type=str, default="code/checkpoints")
     parser.add_argument("--checkpoint-id", type=str, default="rt4ksr_x2")
+    parser.add_argument("--num_workers", type=int, default=4)
     
     # model definitions
     parser.add_argument("--bicubic", action="store_true")

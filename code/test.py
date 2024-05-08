@@ -113,7 +113,7 @@ def test(config):
         test_loader = torch.utils.data.DataLoader(
             data.__dict__[benchmark](config),
             batch_size=1,
-            num_workers=1,
+            num_workers=config.num_workers,
             pin_memory=True,
             shuffle=False,
             drop_last=False
