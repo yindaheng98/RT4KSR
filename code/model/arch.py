@@ -28,6 +28,7 @@ class RT4KSR_Rep(nn.Module):
         self.forget = forget
         self.gamma = nn.Parameter(torch.zeros(1))
         self.gaussian = torchvision.transforms.GaussianBlur(kernel_size=5, sigma=1)
+        self.upscale = upscale
         
         self.down = nn.PixelUnshuffle(2)
         self.up = nn.PixelShuffle(2)
@@ -85,7 +86,7 @@ class RT4KSR_Rep(nn.Module):
             deep_feats = self.tail(deep_feats)
 
         out = self.upsample(deep_feats)        
-        return out
+        return out + F.interpolate(x, scale_factor=self.upscale, mode="bicubic", align_corners=False)
     
     
 ####################################
