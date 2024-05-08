@@ -4,3 +4,4 @@ from data.benchmark import set14
 from data.benchmark import b100
 from data.benchmark import urban100
 from data.benchmark import div2k, div2k_train
+from data.benchmarkdual import div2kdual, div2kdual_train
