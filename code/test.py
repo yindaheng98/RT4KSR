@@ -1,5 +1,6 @@
 import os
 import glob
+import cv2
 import torch
 import numpy as np
 import torch.nn.functional as F
@@ -141,6 +142,11 @@ def test(config):
                 test_results["ssim_rgb"].append(metrics.calculate_ssim(out, hr_img, crop_border=0))
                 test_results["psnr_y"].append(metrics.calculate_psnr(out, hr_img, crop_border=0, test_y_channel=True))
                 test_results["ssim_y"].append(metrics.calculate_ssim(out, hr_img, crop_border=0, test_y_channel=True))
+                
+                if config.show:
+                    cv2.imshow('HR', cv2.cvtColor(hr_img, cv2.COLOR_RGB2BGR))
+                    cv2.imshow('SR', cv2.cvtColor(out, cv2.COLOR_RGB2BGR))
+                    cv2.waitKey(0)
 
             print(f"------> Results of X{config.scale} for benchmark: {benchmark}")
             ave_psnr_rgb = sum(test_results["psnr_rgb"]) / len(test_results["psnr_rgb"])

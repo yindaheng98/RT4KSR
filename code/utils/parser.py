@@ -26,5 +26,6 @@ def base_parser():
     # data
     parser.add_argument("--scale", type=int, default=2, choices=[2,3])
     parser.add_argument("--rgb-range", type=float, default=1.0)
+    parser.add_argument("--show", action="store_true")
     
     return parser.parse_args()
