@@ -4,8 +4,7 @@ convert() {
         --dataroot=data/$1 \
         --hrsrcroot=$2 \
         --grsrcroot=$3 \
-        --name=nerfout \
-        --mode=train
+        --name=nerfout
 }
 # convert coffee_martini-kmeans-6 $DATAROOT/coffee_martini-gray-frame1-base $DATAROOT/coffee_martini-gray-frame1-base/kmeans-6 # debug
 traindual() {
