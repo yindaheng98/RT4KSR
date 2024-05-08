@@ -12,12 +12,10 @@
             "console": "integratedTerminal",
             "args": [
                 "--dataroot=data",
-                "--checkpoint-id=rt4ksr_x2",
+                "--checkpoint-id=rep_model_rt4ksr_x2_small",
                 "--scale=2",
                 "--arch=rt4ksr_rep",
                 "--benchmark=div2k",
-                "--is-train",
-                "--rep"
             ]
         },
         {
