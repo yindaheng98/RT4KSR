@@ -21,6 +21,7 @@ def train_parser():
     parser.add_argument("--checkpoints-root", type=str, default="code/checkpoints")
     parser.add_argument("--checkpoint-id", type=str, default=None)
     parser.add_argument("--batch_size", type=int, default=1)
+    parser.add_argument("--epoch", type=int, default=4)
     parser.add_argument("--num_workers", type=int, default=4)
 
     # model definitions
@@ -117,6 +118,7 @@ def train(config):
     ).to(device)
     # Optimizers specified in the torch.optim package
     optimizer = torch.optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=config.epoch, eta_min=1e-6)
     loss_fn = torch.nn.MSELoss()
 
     for benchmark in config.benchmark:
@@ -128,24 +130,26 @@ def train(config):
             shuffle=True,
             drop_last=False
         )
-        print("Training...")
-        pbar = tqdm(test_loader)
-        for batch in pbar:
-            lr_img = batch["lr"].to(device)
-            hr_img = batch["hr"].to(device)
-            # Zero your gradients for every batch!
-            optimizer.zero_grad()
+        for epoch in range(config.epoch):
+            print("Training...")
+            pbar = tqdm(test_loader)
+            for batch in pbar:
+                lr_img = batch["lr"].to(device)
+                hr_img = batch["hr"].to(device)
+                # Zero your gradients for every batch!
+                optimizer.zero_grad()
 
-            # run method
-            out = net(lr_img)
+                # run method
+                out = net(lr_img)
 
-            # Compute the loss and its gradients
-            loss = loss_fn(out, hr_img)
-            loss.backward()
-            pbar.set_description(f"loss={loss.item()}")
+                # Compute the loss and its gradients
+                loss = loss_fn(out, hr_img)
+                loss.backward()
+                pbar.set_description(f"epoch {epoch} loss=%.6f" % loss.item())
 
-            # Adjust learning weights
-            optimizer.step()
+                # Adjust learning weights
+                optimizer.step()
+            scheduler.step()
     if config.checkpoint_id:
         checkpoint = dict(state_dict=net.state_dict())
         checkpoint_path = os.path.join("code/checkpoints", config.checkpoint_id + ".pth")

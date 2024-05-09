@@ -6,7 +6,7 @@ convert() {
         --grsrcroot=$3 \
         --name=nerfout
 }
-# convert coffee_martini-kmeans-6 $DATAROOT/coffee_martini-gray-frame1-base $DATAROOT/coffee_martini-gray-frame1-base/kmeans-6 # debug
+# convert coffee_martini-kmeans-6 $DATAROOT/coffee_martini-color-frame1-base $DATAROOT/coffee_martini-gray-frame1-base/kmeans-6 # debug
 traindual() {
     python code/train.py \
         --dataroot=data/$1 \
