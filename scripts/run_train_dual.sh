@@ -64,4 +64,12 @@ command() {
     doall $1 9
     doall $1 10
 }
+command taekwondo
+command walking
 command coffee_martini
+command flame_steak
+command sear_steak
+command discussion
+command stepin
+command trimming
+command vrheadset
