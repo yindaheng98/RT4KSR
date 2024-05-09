@@ -169,9 +169,9 @@
             "args": [
                 "--hrsrcroot=D:/MyPrograms/instant-ngp-scaffold/results/grayscale/coffee_martini-color-frame1-base",
                 "--grsrcroot=D:/MyPrograms/instant-ngp-scaffold/results/grayscale/coffee_martini-gray-frame1-base/kmeans-6",
+                "--crsrcroot=D:/MyPrograms/instant-ngp-scaffold/results/grayscale/coffee_martini-color-frame1-base/kmeans-6",
                 "--dataroot=data/coffee_martini-kmeans-6",
-                "--name=nerfout",
-                "--mode=train"
+                "--name=nerfout"
             ]
         }
     ]
