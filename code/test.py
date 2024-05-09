@@ -1,6 +1,7 @@
 import os
 import glob
 import cv2
+import json
 import torch
 import numpy as np
 import torch.nn.functional as F
@@ -159,6 +160,10 @@ def test(config):
             print('------> Average PSNR (Y): {:.6f} dB'.format(ave_psnr_y))
             ave_ssim_y = sum(test_results["ssim_y"]) / len(test_results["ssim_y"])
             print('------> Average SSIM (Y): {:.6f}'.format(ave_ssim_y))
+            if config.save_results:
+                os.makedirs(os.path.dirname(config.save_results), exist_ok=True)
+                with open(config.save_results, "w", encoding="utf8") as f:
+                    json.dump(test_results, f)
 
 
 if __name__ == "__main__":
