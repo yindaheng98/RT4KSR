@@ -163,7 +163,7 @@ def test(config):
             if config.save_results:
                 os.makedirs(os.path.dirname(config.save_results), exist_ok=True)
                 with open(config.save_results, "w", encoding="utf8") as f:
-                    json.dump(test_results, f)
+                    json.dump(test_results, f, indent=2)
 
 
 if __name__ == "__main__":
