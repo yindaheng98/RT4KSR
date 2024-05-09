@@ -23,7 +23,7 @@ testdual() {
         --arch=nerfrt4ksr_rep \
         --benchmark=nerfoutdual \
         --checkpoint-id=$1/nerfrt4ksr_x"$2"_rep_model \
-        --save-results=results/$1-nerfoutdual-x"$2".json
+        --save-results=srresults/$1-nerfoutdual-x"$2".json
 }
 # testdual coffee_martini-kmeans-6 2 # debug
 trainsingle() {
@@ -42,7 +42,7 @@ testsingle() {
         --arch=rt4ksr_rep \
         --benchmark=nerfout \
         --checkpoint-id=$1/rt4ksr_x"$2"_rep_model \
-        --save-results=results/$1-nerfout-x"$2".json
+        --save-results=srresults/$1-nerfout-x"$2".json
 }
 # testsingle coffee_martini-kmeans-6 2 # debug
 doboth() {
