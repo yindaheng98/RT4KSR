@@ -24,7 +24,7 @@ def base_parser():
     parser.add_argument("--save-rep-checkpoint", action="store_true", help="Save checkpoint of reparameterized model intance.")
 
     # data
-    parser.add_argument("--scale", type=int, default=2, choices=[2,3,4])
+    parser.add_argument("--scale", type=int, default=2, choices=[1,2,3,4])
     parser.add_argument("--rgb-range", type=float, default=1.0)
     parser.add_argument("--show", action="store_true")
     parser.add_argument("--save-results", type=str, default=None)

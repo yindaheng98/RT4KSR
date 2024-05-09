@@ -4,9 +4,10 @@ convert() {
         --dataroot=data/$1 \
         --hrsrcroot=$2 \
         --grsrcroot=$3 \
+        --crsrcroot=$4 \
         --name=nerfout
 }
-# convert coffee_martini-kmeans-6 $DATAROOT/coffee_martini-color-frame1-base $DATAROOT/coffee_martini-gray-frame1-base/kmeans-6 # debug
+# convert coffee_martini-kmeans-6 $DATAROOT/coffee_martini-color-frame1-base $DATAROOT/coffee_martini-gray-frame1-base/kmeans-6 $DATAROOT/coffee_martini-color-frame1-base/kmeans-6 # debug
 traindual() {
     python code/train.py \
         --dataroot=data/$1 \
@@ -52,7 +53,9 @@ doboth() {
     testsingle $1 $2
 }
 doall() {
-    convert $1-kmeans-$2 $DATAROOT/$1-color-frame1-base $DATAROOT/$1-gray-frame1-base/kmeans-$2
+    convert $1-kmeans-$2 $DATAROOT/$1-color-frame1-base $DATAROOT/$1-gray-frame1-base/kmeans-$2 $DATAROOT/$1-color-frame1-base/kmeans-$2
+    trainsingle $1-kmeans-$2 1
+    testsingle $1-kmeans-$2 1
     doboth $1-kmeans-$2 2
     doboth $1-kmeans-$2 3
     doboth $1-kmeans-$2 4
@@ -64,12 +67,12 @@ command() {
     doall $1 9
     doall $1 10
 }
-command taekwondo
-command walking
+# command taekwondo
+# command walking
 command coffee_martini
-command flame_steak
-command sear_steak
-command discussion
-command stepin
-command trimming
-command vrheadset
+# command flame_steak
+# command sear_steak
+# command discussion
+# command stepin
+# command trimming
+# command vrheadset
