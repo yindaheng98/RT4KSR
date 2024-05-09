@@ -45,3 +45,16 @@ testsingle() {
         --save-results=results/$1-nerfout-x"$2".json
 }
 # testsingle coffee_martini-kmeans-6 2 # debug
+doboth() {
+    traindual $1 $2
+    testdual $1 $2
+    trainsingle $1 $2
+    testsingle $1 $2
+}
+doall() {
+    convert $1-kmeans-$2 $DATAROOT/$1-color-frame1-base $DATAROOT/$1-gray-frame1-base/kmeans-$2
+    doboth $1-kmeans-$2 2
+    doboth $1-kmeans-$2 3
+    doboth $1-kmeans-$2 4
+}
+doall coffee_martini 6 # debug
