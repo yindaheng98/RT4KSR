@@ -21,7 +21,7 @@ testdual() {
         --dataroot=data/$1 \
         --scale=$2 \
         --arch=nerfrt4ksr_rep \
-        --benchmark=nerfoutdual_train \
+        --benchmark=nerfoutdual \
         --checkpoint-id=$1/nerfrt4ksr_x"$2"_rep_model
 }
 # testdual coffee_martini-kmeans-6 2 # debug
@@ -39,7 +39,7 @@ testsingle() {
         --dataroot=data/$1 \
         --scale=$2 \
         --arch=rt4ksr_rep \
-        --benchmark=nerfout_train \
+        --benchmark=nerfout \
         --checkpoint-id=$1/rt4ksr_x"$2"_rep_model
 }
 # testsingle coffee_martini-kmeans-6 2 # debug

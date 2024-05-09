@@ -121,7 +121,8 @@ def test(config):
         )
         with torch.no_grad():
             print("Testing...")
-            for batch in tqdm(test_loader):
+            pbar = tqdm(test_loader)
+            for batch in pbar:
                 lr_img = batch["lr"].to(device)
                 hr_img = batch["hr"].to(device)
 
@@ -142,7 +143,8 @@ def test(config):
                 test_results["ssim_rgb"].append(metrics.calculate_ssim(out, hr_img, crop_border=0))
                 test_results["psnr_y"].append(metrics.calculate_psnr(out, hr_img, crop_border=0, test_y_channel=True))
                 test_results["ssim_y"].append(metrics.calculate_ssim(out, hr_img, crop_border=0, test_y_channel=True))
-                
+                pbar.set_description(f"psnr_rgb={test_results['psnr_rgb'][-1]}")
+
                 if config.show:
                     cv2.imshow('HR', cv2.cvtColor(hr_img, cv2.COLOR_RGB2BGR))
                     cv2.imshow('SR', cv2.cvtColor(out, cv2.COLOR_RGB2BGR))
