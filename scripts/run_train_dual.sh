@@ -57,4 +57,11 @@ doall() {
     doboth $1-kmeans-$2 3
     doboth $1-kmeans-$2 4
 }
-doall coffee_martini 6 # debug
+command() {
+    doall $1 6
+    doall $1 7
+    doall $1 8
+    doall $1 9
+    doall $1 10
+}
+command coffee_martini
