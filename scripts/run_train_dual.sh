@@ -67,8 +67,8 @@ command() {
     doall $1 9
     doall $1 10
 }
-command taekwondo
-command walking
+command stnerf-taekwondo
+command stnerf-walking
 command coffee_martini
 command flame_steak
 command sear_steak
