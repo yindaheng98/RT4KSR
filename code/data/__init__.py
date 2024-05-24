@@ -7,3 +7,4 @@ from data.benchmark import div2k, div2k_train
 from data.benchmark import nerfout, nerfout_train
 from data.benchmarkdual import div2kdual, div2kdual_train
 from data.benchmarkdual import nerfoutdual, nerfoutdual_train
+from data.benchmarkdual import nerfoutdual_colordecay, nerfoutdual_train_colordecay

@@ -19,7 +19,8 @@ class BenchmarkDual(BaseDataset):
                  mode: str,
                  scale: int,
                  crop_size: int = 64,
-                 rgb_range: int = 1) -> None:
+                 rgb_range: int = 1,
+                 gr_name="Gray") -> None:
         super(BenchmarkDual, self).__init__(dataroot=dataroot,
                                             name=name,
                                             mode=mode,
@@ -29,7 +30,7 @@ class BenchmarkDual(BaseDataset):
 
         self.lr_dir_path = os.path.join(dataroot, "testsets", self.name, self.mode, f"LR_bicubic_x{self.scale}")
         self.hr_dir_path = os.path.join(dataroot, "testsets", self.name, self.mode, "HR")
-        self.gr_dir_path = os.path.join(dataroot, "testsets", self.name, self.mode, "Gray")
+        self.gr_dir_path = os.path.join(dataroot, "testsets", self.name, self.mode, gr_name)
 
         self.lr_files = [os.path.join(self.lr_dir_path, x) for x in sorted(os.listdir(self.lr_dir_path))]
         self.hr_files = [os.path.join(self.hr_dir_path, x) for x in sorted(os.listdir(self.hr_dir_path))]
@@ -60,7 +61,8 @@ class BenchmarkDual(BaseDataset):
         assert lr.shape[-2] * self.scale == hr.shape[-2]
         assert gr.shape[-2] == hr.shape[-2]
 
-        x = torch.cat([F.interpolate(lr.unsqueeze(0), scale_factor=self.scale, mode="bicubic", align_corners=False)[0, ...], gr], dim=0)
+        x = torch.cat([F.interpolate(lr.unsqueeze(0), scale_factor=self.scale,
+                      mode="bicubic", align_corners=False)[0, ...], gr], dim=0)
 
         return {"lr": x.to(torch.float32), "hr": hr.to(torch.float32)}
 
@@ -79,3 +81,11 @@ def nerfoutdual(config):
 
 def nerfoutdual_train(config):
     return BenchmarkDual(config.dataroot, "nerfout", mode="train", scale=config.scale, rgb_range=config.rgb_range)
+
+
+def nerfoutdual_colordecay(config):
+    return BenchmarkDual(config.dataroot, "nerfout", mode="val", scale=config.scale, rgb_range=config.rgb_range, gr_name="LR_bicubic_x1")
+
+
+def nerfoutdual_train_colordecay(config):
+    return BenchmarkDual(config.dataroot, "nerfout", mode="train", scale=config.scale, rgb_range=config.rgb_range, gr_name="LR_bicubic_x1")

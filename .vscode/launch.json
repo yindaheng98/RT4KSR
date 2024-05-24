@@ -15,7 +15,7 @@
                 "--scale=2",
                 "--arch=rt4ksr_rep",
                 "--benchmark=div2k",
-                "--checkpoint-id=rep_model_rt4ksr_x2_small",
+                "--checkpoint-id=rt4ksr_x2_small_rep_model",
             ]
         },
         {
@@ -43,7 +43,7 @@
                 "--scale=2",
                 "--arch=nerfrt4ksr_rep",
                 "--benchmark=div2kdual",
-                "--checkpoint-id=rep_model_rt4ksr_x2_dual"
+                "--checkpoint-id=rt4ksr_x2_dual_rep_model"
             ]
         },
         {
@@ -71,7 +71,7 @@
                 "--scale=2",
                 "--arch=nerfrt4ksr_rep",
                 "--benchmark=nerfoutdual_train",
-                "--checkpoint-id=rep_model_nerfrt4ksr_x2_dual",
+                "--checkpoint-id=nerfrt4ksr_x2_dual_rep_model",
                 "--show"
             ]
         },
@@ -100,7 +100,7 @@
                 "--scale=4",
                 "--arch=rt4ksr_rep",
                 "--benchmark=nerfout_train",
-                "--checkpoint-id=rep_model_rt4ksr_x4",
+                "--checkpoint-id=rt4ksr_x4_rep_model",
                 "--show"
             ]
         },
@@ -129,7 +129,7 @@
                 "--scale=4",
                 "--arch=nerfrt4ksr_rep",
                 "--benchmark=nerfoutdual_train",
-                "--checkpoint-id=rep_model_nerfrt4ksr_x4_dual",
+                "--checkpoint-id=nerfrt4ksr_x4_dual_rep_model",
                 "--show"
             ]
         },
@@ -144,6 +144,35 @@
                 "--scale=4",
                 "--arch=nerfrt4ksr_rep",
                 "--benchmark=nerfoutdual_train",
+                "--checkpoint-id=nerfrt4ksr_x4_dual"
+            ]
+        },
+        {
+            "name": "test NeRFout x4 Dual color decay",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "code/test.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--dataroot=data/coffee_martini-kmeans-6",
+                "--scale=4",
+                "--arch=nerfrt4ksr_rep",
+                "--benchmark=nerfoutdual_train_colordecay",
+                "--checkpoint-id=nerfrt4ksr_x4_dual_rep_model",
+                "--show"
+            ]
+        },
+        {
+            "name": "train NeRFout x4 Dual color decay",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "code/train.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--dataroot=data/coffee_martini-kmeans-6",
+                "--scale=4",
+                "--arch=nerfrt4ksr_rep",
+                "--benchmark=nerfoutdual_train_colordecay",
                 "--checkpoint-id=nerfrt4ksr_x4_dual"
             ]
         },
