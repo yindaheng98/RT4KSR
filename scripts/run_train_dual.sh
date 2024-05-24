@@ -67,6 +67,8 @@ testsingle() {
 doboth() {
     traindual $1 $2
     testdual $1 $2
+    traindual_colordecay $1 $2
+    testdual_colordecay $1 $2
     trainsingle $1 $2
     testsingle $1 $2
 }
