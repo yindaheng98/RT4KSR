@@ -26,7 +26,25 @@ testdual() {
         --checkpoint-id=$1/nerfrt4ksr_x"$2"_rep_model \
         --save-results=srresults/$1-nerfoutdual-x"$2".json
 }
-# testdual coffee_martini-kmeans-6 2 # debug
+traindual_colordecay() {
+    python code/train.py \
+        --dataroot=data/$1 \
+        --scale=$2 \
+        --arch=nerfrt4ksr_rep \
+        --benchmark=nerfoutdual_train_colordecay \
+        --checkpoint-id=$1/nerfrt4ksr_x"$2"_colordecay
+}
+# traindual_colordecay coffee_martini-kmeans-6 2 # debug
+testdual_colordecay() {
+    python code/test.py \
+        --dataroot=data/$1 \
+        --scale=$2 \
+        --arch=nerfrt4ksr_rep \
+        --benchmark=nerfoutdual_colordecay \
+        --checkpoint-id=$1/nerfrt4ksr_x"$2"_colordecay_rep_model \
+        --save-results=srresults/$1-nerfoutdual_colordecay-x"$2".json
+}
+testdual_colordecay coffee_martini-kmeans-6 2 # debug
 trainsingle() {
     python code/train.py \
         --dataroot=data/$1 \
