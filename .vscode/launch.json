@@ -196,10 +196,10 @@
             "program": "scripts/nerfout2dual.py",
             "console": "integratedTerminal",
             "args": [
-                "--hrsrcroot=D:/MyPrograms/instant-ngp-scaffold/results/grayscale/coffee_martini-color-frame1-base",
-                "--grsrcroot=D:/MyPrograms/instant-ngp-scaffold/results/grayscale/coffee_martini-gray-frame1-base/kmeans-6",
-                "--crsrcroot=D:/MyPrograms/instant-ngp-scaffold/results/grayscale/coffee_martini-color-frame1-base/kmeans-6",
-                "--dataroot=data/coffee_martini-kmeans-6",
+                "--hrsrcroot=../output/coffee_martini/frame1/train_interp/ours_30000/renders",
+                "--grsrcroot=../output/vq-coffee_martini/frame1/train_interp/ours_30000/renders",
+                "--crsrcroot=../output/vq-coffee_martini/frame1/train_interp/ours_30000/renders",
+                "--dataroot=data/coffee_martini-kmeans-test",
                 "--name=nerfout"
             ]
         }
