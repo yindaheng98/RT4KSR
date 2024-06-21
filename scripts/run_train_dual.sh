@@ -60,10 +60,15 @@ command() {
 }
 # command stnerf-taekwondo
 # command stnerf-walking
+
 command coffee_martini
-# command flame_steak
-# command sear_steak
-# command discussion
-# command stepin
-# command trimming
-# command vrheadset
+command cook_spinach
+command cut_roasted_beef
+command flame_salmon_1
+command flame_steak
+command sear_steak
+
+command discussion
+command stepin
+command trimming
+command vrheadset
