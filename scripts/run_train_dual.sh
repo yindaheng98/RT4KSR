@@ -48,16 +48,22 @@ doall() {
     doboth $1-kmeans-$2 3
     doboth $1-kmeans-$2 4
 }
-command() {
-    doall $1 16-scale-12-rot-10-f_dc-6-f_rest-6
-    # TODO: more
+doall_wrap() {
+    doall $1 qp-$7-scale-$2-rot-$3-f_dc-$4-f_rest-$5-opacity-$6
 }
-command stnerf-taekwondo
-command stnerf-walking
+command() {
+    doall_wrap $1  8  4  4  4 4 8
+    doall_wrap $1 16 16 16 16 4 8
+    doall_wrap $1 14 13 13 13 4 8
+    doall_wrap $1 12 10 10 10 4 8
+    doall_wrap $1 10  7  7  7 4 8
+}
+# command stnerf-taekwondo
+# command stnerf-walking
 command coffee_martini
-command flame_steak
-command sear_steak
-command discussion
-command stepin
-command trimming
-command vrheadset
+# command flame_steak
+# command sear_steak
+# command discussion
+# command stepin
+# command trimming
+# command vrheadset
