@@ -81,11 +81,3 @@ def nerfoutdual(config):
 
 def nerfoutdual_train(config):
     return BenchmarkDual(config.dataroot, "nerfout", mode="train", scale=config.scale, rgb_range=config.rgb_range)
-
-
-def nerfoutdual_colordecay(config):
-    return BenchmarkDual(config.dataroot, "nerfout", mode="val", scale=config.scale, rgb_range=config.rgb_range, gr_name="LR_bicubic_x1")
-
-
-def nerfoutdual_train_colordecay(config):
-    return BenchmarkDual(config.dataroot, "nerfout", mode="train", scale=config.scale, rgb_range=config.rgb_range, gr_name="LR_bicubic_x1")
