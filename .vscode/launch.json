@@ -67,7 +67,7 @@
             "program": "code/test.py",
             "console": "integratedTerminal",
             "args": [
-                "--dataroot=data/coffee_martini-kmeans-6",
+                "--dataroot=data/coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6",
                 "--scale=2",
                 "--arch=nerfrt4ksr_rep",
                 "--benchmark=nerfoutdual_train",
@@ -82,7 +82,7 @@
             "program": "code/train.py",
             "console": "integratedTerminal",
             "args": [
-                "--dataroot=data/coffee_martini-kmeans-6",
+                "--dataroot=data/coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6",
                 "--scale=2",
                 "--arch=nerfrt4ksr_rep",
                 "--benchmark=nerfoutdual_train",
@@ -96,7 +96,7 @@
             "program": "code/test.py",
             "console": "integratedTerminal",
             "args": [
-                "--dataroot=data/coffee_martini-kmeans-6",
+                "--dataroot=data/coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6",
                 "--scale=4",
                 "--arch=rt4ksr_rep",
                 "--benchmark=nerfout_train",
@@ -111,7 +111,7 @@
             "program": "code/train.py",
             "console": "integratedTerminal",
             "args": [
-                "--dataroot=data/coffee_martini-kmeans-6",
+                "--dataroot=data/coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6",
                 "--scale=4",
                 "--arch=rt4ksr_rep",
                 "--benchmark=nerfout_train",
@@ -125,7 +125,7 @@
             "program": "code/test.py",
             "console": "integratedTerminal",
             "args": [
-                "--dataroot=data/coffee_martini-kmeans-6",
+                "--dataroot=data/coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6",
                 "--scale=4",
                 "--arch=nerfrt4ksr_rep",
                 "--benchmark=nerfoutdual_train",
@@ -140,7 +140,7 @@
             "program": "code/train.py",
             "console": "integratedTerminal",
             "args": [
-                "--dataroot=data/coffee_martini-kmeans-6",
+                "--dataroot=data/coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6",
                 "--scale=4",
                 "--arch=nerfrt4ksr_rep",
                 "--benchmark=nerfoutdual_train",
@@ -154,7 +154,7 @@
             "program": "code/test.py",
             "console": "integratedTerminal",
             "args": [
-                "--dataroot=data/coffee_martini-kmeans-6",
+                "--dataroot=data/coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6",
                 "--scale=4",
                 "--arch=nerfrt4ksr_rep",
                 "--benchmark=nerfoutdual_train_colordecay",
@@ -169,7 +169,7 @@
             "program": "code/train.py",
             "console": "integratedTerminal",
             "args": [
-                "--dataroot=data/coffee_martini-kmeans-6",
+                "--dataroot=data/coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6",
                 "--scale=4",
                 "--arch=nerfrt4ksr_rep",
                 "--benchmark=nerfoutdual_train_colordecay",

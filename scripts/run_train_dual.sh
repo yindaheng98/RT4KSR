@@ -1,13 +1,3 @@
-DATAROOT=../instant-ngp-scaffold/results/grayscale
-convert() {
-    python scripts/nerfout2dual.py \
-        --dataroot=data/$1 \
-        --hrsrcroot=$2 \
-        --grsrcroot=$3 \
-        --crsrcroot=$4 \
-        --name=nerfout
-}
-# convert coffee_martini-kmeans-6 $DATAROOT/coffee_martini-color-frame1-base $DATAROOT/coffee_martini-gray-frame1-base/kmeans-6 $DATAROOT/coffee_martini-color-frame1-base/kmeans-6 # debug
 traindual() {
     python code/train.py \
         --dataroot=data/$1 \
@@ -16,7 +6,7 @@ traindual() {
         --benchmark=nerfoutdual_train \
         --checkpoint-id=$1/nerfrt4ksr_x"$2"
 }
-# traindual coffee_martini-kmeans-6 2 # debug
+# traindual coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6 2 # debug
 testdual() {
     python code/test.py \
         --dataroot=data/$1 \
@@ -34,7 +24,7 @@ traindual_colordecay() {
         --benchmark=nerfoutdual_train_colordecay \
         --checkpoint-id=$1/nerfrt4ksr_x"$2"_colordecay
 }
-# traindual_colordecay coffee_martini-kmeans-6 2 # debug
+# traindual_colordecay coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6 2 # debug
 testdual_colordecay() {
     python code/test.py \
         --dataroot=data/$1 \
@@ -44,7 +34,7 @@ testdual_colordecay() {
         --checkpoint-id=$1/nerfrt4ksr_x"$2"_colordecay_rep_model \
         --save-results=srresults/$1-nerfoutdual_colordecay-x"$2".json
 }
-# testdual_colordecay coffee_martini-kmeans-6 2 # debug
+# testdual_colordecay coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6 2 # debug
 trainsingle() {
     python code/train.py \
         --dataroot=data/$1 \
@@ -53,7 +43,7 @@ trainsingle() {
         --benchmark=nerfout_train \
         --checkpoint-id=$1/rt4ksr_x"$2"
 }
-# trainsingle coffee_martini-kmeans-6 2 # debug
+# trainsingle coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6 2 # debug
 testsingle() {
     python code/test.py \
         --dataroot=data/$1 \
@@ -63,7 +53,7 @@ testsingle() {
         --checkpoint-id=$1/rt4ksr_x"$2"_rep_model \
         --save-results=srresults/$1-nerfout-x"$2".json
 }
-# testsingle coffee_martini-kmeans-6 2 # debug
+# testsingle coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6 2 # debug
 doboth() {
     traindual $1 $2
     testdual $1 $2
@@ -73,7 +63,6 @@ doboth() {
     testsingle $1 $2
 }
 doall() {
-    convert $1-kmeans-$2 $DATAROOT/$1-color-frame1-base $DATAROOT/$1-gray-frame1-base/kmeans-$2 $DATAROOT/$1-color-frame1-base/kmeans-$2
     trainsingle $1-kmeans-$2 1
     testsingle $1-kmeans-$2 1
     doboth $1-kmeans-$2 2
@@ -81,11 +70,8 @@ doall() {
     doboth $1-kmeans-$2 4
 }
 command() {
-    doall $1 6
-    doall $1 7
-    doall $1 8
-    doall $1 9
-    doall $1 10
+    doall $1 16-scale-12-rot-10-f_dc-6-f_rest-6
+    # TODO: more
 }
 command stnerf-taekwondo
 command stnerf-walking
