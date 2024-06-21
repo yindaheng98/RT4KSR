@@ -47,7 +47,7 @@ class NeRFRT4KSR_Rep(RT4KSR_Rep):
 def nerfrt4ksr_rep(config):
     act = activation(config.act_type)
     model = NeRFRT4KSR_Rep(num_channels_color=3,
-                           num_channels_gray=1,
+                           num_channels_gray=3,
                            num_channels_out=3,
                            num_feats=config.feature_channels,
                            num_blocks=config.num_blocks,

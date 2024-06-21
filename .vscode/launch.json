@@ -16,6 +16,7 @@
                 "--arch=rt4ksr_rep",
                 "--benchmark=div2k",
                 "--checkpoint-id=rt4ksr_x2_small_rep_model",
+                "--show"
             ]
         },
         {
@@ -43,7 +44,8 @@
                 "--scale=2",
                 "--arch=nerfrt4ksr_rep",
                 "--benchmark=div2kdual",
-                "--checkpoint-id=rt4ksr_x2_dual_rep_model"
+                "--checkpoint-id=rt4ksr_x2_dual_rep_model",
+                "--show"
             ]
         },
         {

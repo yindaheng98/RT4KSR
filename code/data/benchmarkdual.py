@@ -44,7 +44,7 @@ class BenchmarkDual(BaseDataset):
         idx = self._get_index(index)
         hr = Image.open(self.hr_files[idx]).convert("RGB")
         lr = Image.open(self.lr_files[idx]).convert("RGB")
-        gr = Image.open(self.gr_files[idx]).convert('L')
+        gr = Image.open(self.gr_files[idx]).convert('RGB')
 
         lr = self.transforms(lr)
         hr = self.transforms(hr)
