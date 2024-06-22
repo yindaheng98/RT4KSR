@@ -5,7 +5,7 @@ traindual() {
         --arch=nerfrt4ksr_rep \
         --benchmark=nerfoutdual_train \
         --checkpoint-id=$1/nerfrt4ksr_x"$2" \
-        --epoch 64
+        --epoch 32
 }
 # traindual coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6 2 # debug
 testdual() {
@@ -24,7 +24,7 @@ trainsingle() {
         --arch=rt4ksr_rep \
         --benchmark=nerfout_train \
         --checkpoint-id=$1/rt4ksr_x"$2" \
-        --epoch 64
+        --epoch 8
 }
 # trainsingle coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6 2 # debug
 testsingle() {
