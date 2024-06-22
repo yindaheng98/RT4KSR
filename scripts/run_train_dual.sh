@@ -5,7 +5,7 @@ traindual() {
         --arch=nerfrt4ksr_rep \
         --benchmark=nerfoutdual_train \
         --checkpoint-id=$1/nerfrt4ksr_x"$2" \
-        --epoch 32
+        --epoch $3
 }
 # traindual coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6 2 # debug
 testdual() {
@@ -24,7 +24,7 @@ trainsingle() {
         --arch=rt4ksr_rep \
         --benchmark=nerfout_train \
         --checkpoint-id=$1/rt4ksr_x"$2" \
-        --epoch 8
+        --epoch $3
 }
 # trainsingle coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6 2 # debug
 testsingle() {
@@ -38,14 +38,14 @@ testsingle() {
 }
 # testsingle coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6 2 # debug
 doboth() {
-    traindual $1 $2
-    testdual $1 $2
-    trainsingle $1 $2
-    testsingle $1 $2
+    traindual $1 $2 32
+    testdual $1 $2 32
+    trainsingle $1 $2 8
+    testsingle $1 $2 8
 }
 doall() {
-    trainsingle $1-kmeans-$2 1
-    testsingle $1-kmeans-$2 1
+    trainsingle $1-kmeans-$2 1 32
+    testsingle $1-kmeans-$2 1 32
     doboth $1-kmeans-$2 2
     doboth $1-kmeans-$2 3
     doboth $1-kmeans-$2 4
