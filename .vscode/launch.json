@@ -62,7 +62,10 @@
                 "--scale=2",
                 "--arch=nerfrt4ksr_rep",
                 "--benchmark=div2kdual_train",
-                "--checkpoint-id=rt4ksr_x2_dual"
+                "--checkpoint-id=rt4ksr_x2_dual",
+                "--batch-size=4",
+                "--crop-size=256",
+                "--epoch=128"
             ]
         },
         {
@@ -152,7 +155,10 @@
                 "--scale=4",
                 "--arch=nerfrt4ksr_rep",
                 "--benchmark=nerfoutdual_train",
-                "--checkpoint-id=nerfrt4ksr_x4_dual"
+                "--checkpoint-id=nerfrt4ksr_x4_dual",
+                "--batch-size=4",
+                "--crop-size=298",
+                "--epoch=128"
             ]
         },
         {

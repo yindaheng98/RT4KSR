@@ -1,4 +1,5 @@
 import os
+import random
 from PIL import Image
 from typing import Tuple, List
 import matplotlib.pyplot as plt
@@ -40,6 +41,16 @@ class BenchmarkDual(BaseDataset):
             transforms.ToTensor(rgb_range=self.rgb_range)
         ])
 
+    def random_crop(self, lr, hrs):
+        assert lr.shape[-2] >= self.crop_size
+        assert lr.shape[-1] >= self.crop_size
+        x0 = random.randint(0, lr.shape[-2]-self.crop_size)
+        y0 = random.randint(0, lr.shape[-1]-self.crop_size)
+        x1 = x0+self.crop_size
+        y1 = y0+self.crop_size
+        return lr[..., x0:x1, y0:y1], [hr[..., x0*self.scale:x1*self.scale, y0*self.scale:y1*self.scale] for hr in hrs]
+
+
     def __getitem__(self, index: int) -> Tuple[torch.Tensor, torch.Tensor]:
         idx = self._get_index(index)
         hr = Image.open(self.hr_files[idx]).convert("RGB")
@@ -60,6 +71,9 @@ class BenchmarkDual(BaseDataset):
         assert lr.shape[-1] * self.scale == hr.shape[-1]
         assert lr.shape[-2] * self.scale == hr.shape[-2]
         assert gr.shape[-2] == hr.shape[-2]
+        
+        if self.crop_size:
+            lr, (hr,gr) = self.random_crop(lr, (hr,gr))
 
         x = torch.cat([F.interpolate(lr.unsqueeze(0), scale_factor=self.scale,
                       mode="bicubic", align_corners=False)[0, ...], gr], dim=0)
@@ -68,16 +82,16 @@ class BenchmarkDual(BaseDataset):
 
 
 def div2kdual(config):
-    return BenchmarkDual(config.dataroot, "DIV2K", mode="val", scale=config.scale, rgb_range=config.rgb_range)
+    return BenchmarkDual(config.dataroot, "DIV2K", mode="val", scale=config.scale, crop_size=config.crop_size, rgb_range=config.rgb_range)
 
 
 def div2kdual_train(config):
-    return BenchmarkDual(config.dataroot, "DIV2K", mode="train", scale=config.scale, rgb_range=config.rgb_range)
+    return BenchmarkDual(config.dataroot, "DIV2K", mode="train", scale=config.scale, crop_size=config.crop_size, rgb_range=config.rgb_range)
 
 
 def nerfoutdual(config):
-    return BenchmarkDual(config.dataroot, "nerfout", mode="val", scale=config.scale, rgb_range=config.rgb_range)
+    return BenchmarkDual(config.dataroot, "nerfout", mode="val", scale=config.scale, crop_size=config.crop_size, rgb_range=config.rgb_range)
 
 
 def nerfoutdual_train(config):
-    return BenchmarkDual(config.dataroot, "nerfout", mode="train", scale=config.scale, rgb_range=config.rgb_range)
+    return BenchmarkDual(config.dataroot, "nerfout", mode="train", scale=config.scale, crop_size=config.crop_size, rgb_range=config.rgb_range)
