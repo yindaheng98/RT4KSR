@@ -86,6 +86,7 @@ def reparameterize(config, net, device, save_rep_checkpoint=False):
 
 
 def test(config):
+    config.__setattr__("crop_size", None)
     """
     SETUP METRICS
     """

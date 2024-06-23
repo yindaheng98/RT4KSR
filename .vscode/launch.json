@@ -32,7 +32,8 @@
                 "--benchmark=div2k_train",
                 "--checkpoint-id=rt4ksr_x2_small",
                 "--batch-size=32",
-                "--crop-size=256"
+                "--crop-size=256",
+                "--epoch=128"
             ]
         },
         {
@@ -119,7 +120,10 @@
                 "--scale=4",
                 "--arch=rt4ksr_rep",
                 "--benchmark=nerfout_train",
-                "--checkpoint-id=rt4ksr_x4"
+                "--checkpoint-id=rt4ksr_x4",
+                "--batch-size=32",
+                "--crop-size=298",
+                "--epoch=128"
             ]
         },
         {
