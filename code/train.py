@@ -20,7 +20,7 @@ def train_parser():
     parser.add_argument("--benchmark", type=str, nargs="+", default=["ntire23rtsr"])
     parser.add_argument("--checkpoints-root", type=str, default="code/checkpoints")
     parser.add_argument("--checkpoint-id", type=str, default=None)
-    parser.add_argument("--batch_size", type=int, default=1)
+    parser.add_argument("--batch-size", type=int, default=1)
     parser.add_argument("--epoch", type=int, default=4)
     parser.add_argument("--num_workers", type=int, default=4)
 
