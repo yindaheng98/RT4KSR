@@ -105,5 +105,5 @@ def rt4ksr_rep(config):
                        forget=False,
                        is_train=config.is_train,
                        layernorm=True,
-                       residual=False)
+                       residual=True)
     return model
