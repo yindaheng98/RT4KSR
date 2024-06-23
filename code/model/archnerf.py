@@ -53,7 +53,7 @@ def nerfrt4ksr_rep(config):
                            num_blocks=config.num_blocks,
                            act=act,
                            eca_gamma=0,
-                           forget=False,
+                           forget=True,
                            is_train=config.is_train,
                            layernorm=True,
                            residual=True)

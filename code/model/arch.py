@@ -102,7 +102,7 @@ def rt4ksr_rep(config):
                        upscale=config.scale,
                        act=act,
                        eca_gamma=0,
-                       forget=False,
+                       forget=True,
                        is_train=config.is_train,
                        layernorm=True,
                        residual=True)
