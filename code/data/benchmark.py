@@ -1,4 +1,5 @@
 import os
+import random
 from PIL import Image
 from typing import Tuple, List
 import matplotlib.pyplot as plt
@@ -36,7 +37,16 @@ class Benchmark(BaseDataset):
             transforms.ToTensor(rgb_range=self.rgb_range)
         ])
         self.degrade = transforms.BicubicDownsample(scale)
-        
+
+    def random_crop(self, lr, hrs):
+        assert lr.shape[-2] >= self.crop_size
+        assert lr.shape[-1] >= self.crop_size
+        x0 = random.randint(0, lr.shape[-2]-self.crop_size)
+        y0 = random.randint(0, lr.shape[-1]-self.crop_size)
+        x1 = x0+self.crop_size
+        y1 = y0+self.crop_size
+        return lr[..., x0:x1, y0:y1], [hr[..., x0*self.scale:x1*self.scale, y0*self.scale:y1*self.scale] for hr in hrs]
+
     def __getitem__(self, index: int) -> Tuple[torch.Tensor, torch.Tensor]:
         idx = self._get_index(index)
         hr = Image.open(self.hr_files[idx]).convert("RGB")
@@ -53,37 +63,40 @@ class Benchmark(BaseDataset):
         
         assert lr.shape[-1] * self.scale == hr.shape[-1]
         assert lr.shape[-2] * self.scale == hr.shape[-2]
+        
+        if self.crop_size:
+            lr, (hr,) = self.random_crop(lr, (hr,))
 
         return {"lr":lr.to(torch.float32), "hr":hr.to(torch.float32)}
 
 
 def set5(config):
-    return Benchmark(config.dataroot, "Set5", mode="val", scale=config.scale, rgb_range=config.rgb_range)
+    return Benchmark(config.dataroot, "Set5", mode="val", scale=config.scale, crop_size=config.crop_size, rgb_range=config.rgb_range)
 
 
 def set14(config):
-    return Benchmark(config.dataroot, "Set14", mode="val", scale=config.scale, rgb_range=config.rgb_range)
+    return Benchmark(config.dataroot, "Set14", mode="val", scale=config.scale, crop_size=config.crop_size, rgb_range=config.rgb_range)
 
 
 def b100(config):
-    return Benchmark(config.dataroot, "B100", mode="val", scale=config.scale, rgb_range=config.rgb_range)
+    return Benchmark(config.dataroot, "B100", mode="val", scale=config.scale, crop_size=config.crop_size, rgb_range=config.rgb_range)
 
 
 def urban100(config):
-    return Benchmark(config.dataroot, "Urban100", mode="val", scale=config.scale, rgb_range=config.rgb_range)
+    return Benchmark(config.dataroot, "Urban100", mode="val", scale=config.scale, crop_size=config.crop_size, rgb_range=config.rgb_range)
 
 
 def div2k(config):
-    return Benchmark(config.dataroot, "DIV2K", mode="val", scale=config.scale, rgb_range=config.rgb_range)
+    return Benchmark(config.dataroot, "DIV2K", mode="val", scale=config.scale, crop_size=config.crop_size, rgb_range=config.rgb_range)
 
 
 def div2k_train(config):
-    return Benchmark(config.dataroot, "DIV2K", mode="train", scale=config.scale, rgb_range=config.rgb_range)
+    return Benchmark(config.dataroot, "DIV2K", mode="train", scale=config.scale, crop_size=config.crop_size, rgb_range=config.rgb_range)
 
 
 def nerfout(config):
-    return Benchmark(config.dataroot, "nerfout", mode="val", scale=config.scale, rgb_range=config.rgb_range)
+    return Benchmark(config.dataroot, "nerfout", mode="val", scale=config.scale, crop_size=config.crop_size, rgb_range=config.rgb_range)
 
 
 def nerfout_train(config):
-    return Benchmark(config.dataroot, "nerfout", mode="train", scale=config.scale, rgb_range=config.rgb_range)
+    return Benchmark(config.dataroot, "nerfout", mode="train", scale=config.scale, crop_size=config.crop_size, rgb_range=config.rgb_range)

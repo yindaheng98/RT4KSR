@@ -30,7 +30,9 @@
                 "--scale=2",
                 "--arch=rt4ksr_rep",
                 "--benchmark=div2k_train",
-                "--checkpoint-id=rt4ksr_x2_small"
+                "--checkpoint-id=rt4ksr_x2_small",
+                "--batch-size=32",
+                "--crop-size=256"
             ]
         },
         {
