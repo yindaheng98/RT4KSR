@@ -125,7 +125,7 @@
                 "--benchmark=nerfout_train",
                 "--checkpoint-id=rt4ksr_x4",
                 "--batch-size=32",
-                "--crop-size=1188",
+                "--crop-size=1176",
                 "--epoch=128"
             ]
         },
@@ -162,7 +162,7 @@
                 "--benchmark=nerfout_train",
                 "--checkpoint-id=srvgg_x4",
                 "--batch-size=16",
-                "--crop-size=1188",
+                "--crop-size=1176",
                 "--epoch=128"
             ]
         },
@@ -194,7 +194,7 @@
                 "--benchmark=nerfoutdual_train",
                 "--checkpoint-id=nerfrt4ksr_x4_dual",
                 "--batch-size=8",
-                "--crop-size=1188",
+                "--crop-size=1176",
                 "--epoch=128"
             ]
         },

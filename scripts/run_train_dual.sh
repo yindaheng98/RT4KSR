@@ -12,8 +12,8 @@ traindual() {
         --checkpoint-id=$1/nerfrt4ksr_x"$2" \
         --epoch $3 \
         --batch-size 8 \
-        --crop-size 1188 \
-        --num-workers 8
+        --crop-size 1176 \
+        --num-workers 16
 }
 # traindual coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6 2 # debug
 testdual() {
@@ -43,8 +43,8 @@ trainsingle() {
         --benchmark=nerfout_train \
         --checkpoint-id=$1/rt4ksr_x"$2" \
         --epoch $3 \
-        --batch-size 32 \
-        --crop-size 1188 \
+        --batch-size $((8*$2)) \
+        --crop-size 1176 \
         --num-workers 16
 }
 # trainsingle coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6 2 # debug
