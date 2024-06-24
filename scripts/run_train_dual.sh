@@ -1,15 +1,17 @@
+ARCHSR=srresnet
+ARCHDUAL=nerfsrresnet
 traindual() {
-    if [ -e "code/checkpoints/$1/nerfrt4ksr_x$2.pth" ]; then
-        echo "skip $1/nerfrt4ksr_x$2"
+    if [ -e "code/checkpoints/$1/${ARCHDUAL}_x$2.pth" ]; then
+        echo "skip $1/${ARCHDUAL}_x$2"
         return 0
     fi
     # echo \
     python code/train.py \
         --dataroot=data/$1 \
         --scale=$2 \
-        --arch=nerfrt4ksr_rep \
+        --arch=$ARCHDUAL \
         --benchmark=nerfoutdual_train \
-        --checkpoint-id=$1/nerfrt4ksr_x"$2" \
+        --checkpoint-id=$1/${ARCHDUAL}_x"$2" \
         --epoch $3 \
         --batch-size 8 \
         --crop-size 1176 \
@@ -25,25 +27,25 @@ testdual() {
     python code/test.py \
         --dataroot=data/$1 \
         --scale=$2 \
-        --arch=nerfrt4ksr_rep \
+        --arch=$ARCHDUAL \
         --benchmark=nerfoutdual \
-        --checkpoint-id=$1/nerfrt4ksr_x"$2"_rep_model \
+        --checkpoint-id=$1/${ARCHDUAL}_x"$2"_rep_model \
         --save-results=srresults/$1-nerfoutdual-x"$2".json
 }
 trainsingle() {
-    if [ -e "code/checkpoints/$1/rt4ksr_x$2.pth" ]; then
-        echo "skip $1/rt4ksr_x$2"
+    if [ -e "code/checkpoints/$1/${ARCHSR}_x$2.pth" ]; then
+        echo "skip $1/${ARCHSR}_x$2"
         return 0
     fi
     # echo \
     python code/train.py \
         --dataroot=data/$1 \
         --scale=$2 \
-        --arch=rt4ksr_rep \
+        --arch=$ARCHSR \
         --benchmark=nerfout_train \
-        --checkpoint-id=$1/rt4ksr_x"$2" \
+        --checkpoint-id=$1/${ARCHSR}_x"$2" \
         --epoch $3 \
-        --batch-size $((8*$2)) \
+        --batch-size $((4*$2)) \
         --crop-size 1176 \
         --num-workers 16
 }
@@ -57,9 +59,9 @@ testsingle() {
     python code/test.py \
         --dataroot=data/$1 \
         --scale=$2 \
-        --arch=rt4ksr_rep \
+        --arch=$ARCHSR \
         --benchmark=nerfout \
-        --checkpoint-id=$1/rt4ksr_x"$2"_rep_model \
+        --checkpoint-id=$1/${ARCHSR}_x"$2"_rep_model \
         --save-results=srresults/$1-nerfout-x"$2".json
 }
 # testsingle coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6 2 # debug

@@ -103,7 +103,7 @@ class MSRResNet(nn.Module):
         self.body = make_layer(ResidualBlockNoBN, num_block, num_feat=num_feat)
 
         # upsampling
-        if self.upscale in [2, 3]:
+        if self.upscale in [1, 2, 3]:
             self.upconv1 = nn.Conv2d(num_feat, num_feat * self.upscale * self.upscale, 3, 1, 1)
             self.pixel_shuffle = nn.PixelShuffle(self.upscale)
         elif self.upscale == 4:
@@ -129,11 +129,30 @@ class MSRResNet(nn.Module):
         if self.upscale == 4:
             out = self.lrelu(self.pixel_shuffle(self.upconv1(out)))
             out = self.lrelu(self.pixel_shuffle(self.upconv2(out)))
-        elif self.upscale in [2, 3]:
+        elif self.upscale in [1, 2, 3]:
             out = self.lrelu(self.pixel_shuffle(self.upconv1(out)))
 
         out = self.conv_last(self.lrelu(self.conv_hr(out)))
         base = F.interpolate(x, scale_factor=self.upscale, mode='bilinear', align_corners=False)
+        out += base
+        return out
+
+
+class NeRFMSRResNet(MSRResNet):
+    def __init__(self, num_in_ch_color=3, num_in_ch_gray=3, upscale=4, *args, **kwargs):
+        super().__init__(num_in_ch=num_in_ch_color+num_in_ch_gray, upscale=1, *args, **kwargs)
+        self.nerf_upscale = upscale
+
+    def forward(self, x):
+        lr, gr = x
+        base = F.interpolate(lr, scale_factor=self.nerf_upscale, mode='bilinear', align_corners=False)
+        x = torch.cat([base, gr], dim=1)
+        feat = self.lrelu(self.conv_first(x))
+        out = self.body(feat)
+
+        out = self.lrelu(self.pixel_shuffle(self.upconv1(out)))
+
+        out = self.conv_last(self.lrelu(self.conv_hr(out)))
         out += base
         return out
 
@@ -148,4 +167,14 @@ def srresnet(config):
                       num_feat=config.feature_channels,
                       num_block=config.num_blocks,
                       upscale=config.scale)
+    return model
+
+
+def nerfsrresnet(config):
+    model = NeRFMSRResNet(num_in_ch_color=3,
+                          num_in_ch_gray=3,
+                          num_out_ch=3,
+                          num_feat=config.feature_channels,
+                          num_block=config.num_blocks,
+                          upscale=config.scale)
     return model
