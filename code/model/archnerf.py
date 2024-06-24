@@ -7,13 +7,16 @@ from .arch import *
 
 
 class NeRFRT4KSR_Rep(RT4KSR_Rep):
-    def __init__(self, num_channels_color, num_channels_gray, *args, **kwargs):
+    def __init__(self, num_channels_color, num_channels_gray, upscale, *args, **kwargs):
         super().__init__(*args, **kwargs, upscale=1, num_channels_in=num_channels_color + num_channels_gray)
         self.num_channels_color = num_channels_color
         self.num_channels_gray = num_channels_gray
+        self.nerf_upscale = upscale
 
     def forward(self, x):
-        color = x[:, 0:self.num_channels_color]
+        lr, gr = x
+        lr_bicubic = F.interpolate(lr, scale_factor=self.nerf_upscale, mode='bicubic', align_corners=False)
+        x = torch.cat([lr_bicubic, gr], dim=1)
         
         # Following is just copy from RT4KSR_Rep
         # stage 1
@@ -37,7 +40,7 @@ class NeRFRT4KSR_Rep(RT4KSR_Rep):
             deep_feats = self.tail(deep_feats)
 
         out = self.upsample(deep_feats)
-        return out + color
+        return out + lr_bicubic
 
 ####################################
 # RETURN INITIALIZED MODEL INSTANCES
@@ -51,6 +54,7 @@ def nerfrt4ksr_rep(config):
                            num_channels_out=3,
                            num_feats=config.feature_channels,
                            num_blocks=config.num_blocks,
+                           upscale=config.scale,
                            act=act,
                            eca_gamma=0,
                            forget=False,

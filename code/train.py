@@ -135,7 +135,7 @@ def train(config):
             print("Training...")
             pbar = tqdm(test_loader)
             for batch in pbar:
-                lr_img = batch["lr"].to(device)
+                lr_img = [t.to(device) for t in batch["lr"]] if isinstance(batch["lr"], list) else batch["lr"].to(device)
                 hr_img = batch["hr"].to(device)
                 # Zero your gradients for every batch!
                 optimizer.zero_grad()

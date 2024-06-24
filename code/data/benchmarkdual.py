@@ -78,7 +78,7 @@ class BenchmarkDual(BaseDataset):
         x = torch.cat([F.interpolate(lr.unsqueeze(0), scale_factor=self.scale,
                       mode='bicubic', align_corners=False)[0, ...], gr], dim=0)
 
-        return {"lr": x.to(torch.float32), "hr": hr.to(torch.float32)}
+        return {"lr": (lr.to(torch.float32), gr.to(torch.float32)), "hr": hr.to(torch.float32)}
 
 
 def div2kdual(config):
