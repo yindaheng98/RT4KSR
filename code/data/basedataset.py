@@ -1,5 +1,6 @@
 from PIL import Image
 from typing import Tuple
+import random
 
 import torch
 from torch.utils.data import Dataset
@@ -50,3 +51,13 @@ class BaseDataset(Dataset):
     @staticmethod
     def _get_index(idx):
         return idx
+
+    def random_crop(self, lr, hrs):
+        lr_crop_size = self.crop_size // self.scale
+        assert lr.shape[-2] >= lr_crop_size
+        assert lr.shape[-1] >= lr_crop_size
+        x0 = random.randint(0, lr.shape[-2]-lr_crop_size)
+        y0 = random.randint(0, lr.shape[-1]-lr_crop_size)
+        x1 = x0+lr_crop_size
+        y1 = y0+lr_crop_size
+        return lr[..., x0:x1, y0:y1], [hr[..., x0*self.scale:x1*self.scale, y0*self.scale:y1*self.scale] for hr in hrs]

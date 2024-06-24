@@ -75,7 +75,7 @@
             "program": "code/test.py",
             "console": "integratedTerminal",
             "args": [
-                "--dataroot=data/coffee_martini-kmeans-qp-16-scale-16-rot-16-f_dc-16-f_rest-4-opacity-4",
+                "--dataroot=data/coffee_martini-kmeans-qp-8-scale-16-rot-16-f_dc-16-f_rest-16-opacity-4",
                 "--scale=2",
                 "--arch=nerfrt4ksr_rep",
                 "--benchmark=nerfoutdual_train",
@@ -90,7 +90,7 @@
             "program": "code/train.py",
             "console": "integratedTerminal",
             "args": [
-                "--dataroot=data/coffee_martini-kmeans-qp-16-scale-16-rot-16-f_dc-16-f_rest-4-opacity-4",
+                "--dataroot=data/coffee_martini-kmeans-qp-8-scale-16-rot-16-f_dc-16-f_rest-16-opacity-4",
                 "--scale=2",
                 "--arch=nerfrt4ksr_rep",
                 "--benchmark=nerfoutdual_train",
@@ -104,7 +104,7 @@
             "program": "code/test.py",
             "console": "integratedTerminal",
             "args": [
-                "--dataroot=data/coffee_martini-kmeans-qp-16-scale-16-rot-16-f_dc-16-f_rest-4-opacity-4",
+                "--dataroot=data/coffee_martini-kmeans-qp-8-scale-16-rot-16-f_dc-16-f_rest-16-opacity-4",
                 "--scale=4",
                 "--arch=rt4ksr_rep",
                 "--benchmark=nerfout_train",
@@ -119,13 +119,13 @@
             "program": "code/train.py",
             "console": "integratedTerminal",
             "args": [
-                "--dataroot=data/coffee_martini-kmeans-qp-16-scale-16-rot-16-f_dc-16-f_rest-4-opacity-4",
+                "--dataroot=data/coffee_martini-kmeans-qp-8-scale-16-rot-16-f_dc-16-f_rest-16-opacity-4",
                 "--scale=4",
                 "--arch=rt4ksr_rep",
                 "--benchmark=nerfout_train",
                 "--checkpoint-id=rt4ksr_x4",
                 "--batch-size=32",
-                "--crop-size=298",
+                "--crop-size=1188",
                 "--epoch=128"
             ]
         },
@@ -136,7 +136,7 @@
             "program": "code/test.py",
             "console": "integratedTerminal",
             "args": [
-                "--dataroot=data/coffee_martini-kmeans-qp-16-scale-16-rot-16-f_dc-16-f_rest-4-opacity-4",
+                "--dataroot=data/coffee_martini-kmeans-qp-8-scale-16-rot-16-f_dc-16-f_rest-16-opacity-4",
                 "--scale=4",
                 "--arch=srvgg",
                 "--feature-channels=32",
@@ -154,7 +154,7 @@
             "program": "code/train.py",
             "console": "integratedTerminal",
             "args": [
-                "--dataroot=data/coffee_martini-kmeans-qp-16-scale-16-rot-16-f_dc-16-f_rest-4-opacity-4",
+                "--dataroot=data/coffee_martini-kmeans-qp-8-scale-16-rot-16-f_dc-16-f_rest-16-opacity-4",
                 "--scale=4",
                 "--arch=srvgg",
                 "--feature-channels=32",
@@ -162,7 +162,7 @@
                 "--benchmark=nerfout_train",
                 "--checkpoint-id=srvgg_x4",
                 "--batch-size=16",
-                "--crop-size=298",
+                "--crop-size=1188",
                 "--epoch=128"
             ]
         },
@@ -173,7 +173,7 @@
             "program": "code/test.py",
             "console": "integratedTerminal",
             "args": [
-                "--dataroot=data/coffee_martini-kmeans-qp-16-scale-16-rot-16-f_dc-16-f_rest-4-opacity-4",
+                "--dataroot=data/coffee_martini-kmeans-qp-8-scale-16-rot-16-f_dc-16-f_rest-16-opacity-4",
                 "--scale=4",
                 "--arch=nerfrt4ksr_rep",
                 "--benchmark=nerfoutdual_train",
@@ -188,13 +188,13 @@
             "program": "code/train.py",
             "console": "integratedTerminal",
             "args": [
-                "--dataroot=data/coffee_martini-kmeans-qp-16-scale-16-rot-16-f_dc-16-f_rest-4-opacity-4",
+                "--dataroot=data/coffee_martini-kmeans-qp-8-scale-16-rot-16-f_dc-16-f_rest-16-opacity-4",
                 "--scale=4",
                 "--arch=nerfrt4ksr_rep",
                 "--benchmark=nerfoutdual_train",
                 "--checkpoint-id=nerfrt4ksr_x4_dual",
-                "--batch-size=4",
-                "--crop-size=298",
+                "--batch-size=8",
+                "--crop-size=1188",
                 "--epoch=128"
             ]
         },
@@ -205,7 +205,7 @@
             "program": "code/test.py",
             "console": "integratedTerminal",
             "args": [
-                "--dataroot=data/coffee_martini-kmeans-qp-16-scale-16-rot-16-f_dc-16-f_rest-4-opacity-4",
+                "--dataroot=data/coffee_martini-kmeans-qp-8-scale-16-rot-16-f_dc-16-f_rest-16-opacity-4",
                 "--scale=1",
                 "--arch=rt4ksr_rep",
                 "--benchmark=nerfout_train",
@@ -220,7 +220,7 @@
             "program": "code/train.py",
             "console": "integratedTerminal",
             "args": [
-                "--dataroot=data/coffee_martini-kmeans-qp-16-scale-16-rot-16-f_dc-16-f_rest-4-opacity-4",
+                "--dataroot=data/coffee_martini-kmeans-qp-8-scale-16-rot-16-f_dc-16-f_rest-16-opacity-4",
                 "--scale=1",
                 "--arch=rt4ksr_rep",
                 "--benchmark=nerfout_train",

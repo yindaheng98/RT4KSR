@@ -3,6 +3,7 @@ traindual() {
         echo "skip $1/nerfrt4ksr_x$2"
         return 0
     fi
+    # echo \
     python code/train.py \
         --dataroot=data/$1 \
         --scale=$2 \
@@ -10,9 +11,9 @@ traindual() {
         --benchmark=nerfoutdual_train \
         --checkpoint-id=$1/nerfrt4ksr_x"$2" \
         --epoch $3 \
-        --batch-size 16 \
-        --crop-size 298 \
-        --num-workers 16
+        --batch-size 8 \
+        --crop-size 1188 \
+        --num-workers 8
 }
 # traindual coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6 2 # debug
 testdual() {
@@ -20,6 +21,7 @@ testdual() {
         echo "skip srresults/$1-nerfoutdual-x$2.json"
         return 0
     fi
+    # echo \
     python code/test.py \
         --dataroot=data/$1 \
         --scale=$2 \
@@ -33,6 +35,7 @@ trainsingle() {
         echo "skip $1/rt4ksr_x$2"
         return 0
     fi
+    # echo \
     python code/train.py \
         --dataroot=data/$1 \
         --scale=$2 \
@@ -41,7 +44,7 @@ trainsingle() {
         --checkpoint-id=$1/rt4ksr_x"$2" \
         --epoch $3 \
         --batch-size 32 \
-        --crop-size 298 \
+        --crop-size 1188 \
         --num-workers 16
 }
 # trainsingle coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6 2 # debug
@@ -50,6 +53,7 @@ testsingle() {
         echo "skip srresults/$1-nerfout-x$2.json"
         return 0
     fi
+    # echo \
     python code/test.py \
         --dataroot=data/$1 \
         --scale=$2 \
