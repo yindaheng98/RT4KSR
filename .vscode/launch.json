@@ -130,6 +130,43 @@
             ]
         },
         {
+            "name": "test NeRFout x4 srvgg",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "code/test.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--dataroot=data/coffee_martini-kmeans-qp-16-scale-16-rot-16-f_dc-16-f_rest-4-opacity-4",
+                "--scale=4",
+                "--arch=srvgg",
+                "--feature-channels=32",
+                "--num-blocks=8",
+                "--benchmark=nerfout_train",
+                "--checkpoint-id=srvgg_x4",
+                "--is-train",
+                "--show"
+            ]
+        },
+        {
+            "name": "train NeRFout x4 srvgg",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "code/train.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--dataroot=data/coffee_martini-kmeans-qp-16-scale-16-rot-16-f_dc-16-f_rest-4-opacity-4",
+                "--scale=4",
+                "--arch=srvgg",
+                "--feature-channels=32",
+                "--num-blocks=8",
+                "--benchmark=nerfout_train",
+                "--checkpoint-id=srvgg_x4",
+                "--batch-size=16",
+                "--crop-size=298",
+                "--epoch=128"
+            ]
+        },
+        {
             "name": "test NeRFout x4 Dual",
             "type": "debugpy",
             "request": "launch",
