@@ -66,8 +66,8 @@ testsingle() {
 doboth() {
     traindual $1 $2 64
     testdual $1 $2 64
-    trainsingle $1 $2 64
-    testsingle $1 $2 64
+    trainsingle $1 $2 16
+    testsingle $1 $2 16
 }
 doall() {
     trainsingle $1-kmeans-$2 1 64
