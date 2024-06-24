@@ -51,8 +51,14 @@ class ResBlock(nn.Module):
     def __init__(self, n_feats, ratio=2):
         super(ResBlock, self).__init__()
         self.expand_conv = nn.Conv2d(n_feats, int(ratio*n_feats), 1, 1, 0)
+        self.expand_conv.weight.data *= 0.1
+        self.expand_conv.bias.data.fill_(0)
         self.fea_conv = nn.Conv2d(int(ratio*n_feats), int(ratio*n_feats), 3, 1, 0)
+        self.fea_conv.weight.data *= 0.1
+        self.fea_conv.bias.data.fill_(0)
         self.reduce_conv = nn.Conv2d(int(ratio*n_feats), n_feats, 1, 1, 0)
+        self.reduce_conv.weight.data *= 0.1
+        self.reduce_conv.bias.data.fill_(0)
 
     def forward(self, x):
         out = self.expand_conv(x)
@@ -91,6 +97,8 @@ class ECALayer(nn.Module):
         t = int(abs((math.log(channels, 2) + b) / gamma))
         k_size = t if t % 2 else t + 1
         self.conv = nn.Conv1d(1, 1, kernel_size=k_size, padding=(k_size - 1) // 2, bias=False)
+        self.conv.weight.data *= 0.1
+        self.conv.bias.data.fill_(0)
 
         self.sigmoid = nn.Sigmoid()
 
