@@ -141,9 +141,6 @@ def test(config):
                 hr_img *= 255.
                 hr_img = image.tensor2uint(hr_img)
 
-                lr_img *= 255.
-                lr_img = image.tensor2uint(lr_img)
-
                 test_results["psnr_rgb"].append(metrics.calculate_psnr(out, hr_img, crop_border=0))
                 test_results["ssim_rgb"].append(metrics.calculate_ssim(out, hr_img, crop_border=0))
                 test_results["psnr_y"].append(metrics.calculate_psnr(out, hr_img, crop_border=0, test_y_channel=True))
@@ -152,7 +149,10 @@ def test(config):
 
                 if config.show:
                     cv2.imshow('HR', cv2.cvtColor(hr_img, cv2.COLOR_RGB2BGR))
-                    cv2.imshow('LR', cv2.cvtColor(lr_img, cv2.COLOR_RGB2BGR))
+                    _lr_img = lr_img[0] if isinstance(lr_img, list) else lr_img
+                    _lr_img *= 255.
+                    _lr_img = image.tensor2uint(_lr_img)
+                    cv2.imshow('LR', cv2.cvtColor(_lr_img, cv2.COLOR_RGB2BGR))
                     cv2.imshow('SR', cv2.cvtColor(out, cv2.COLOR_RGB2BGR))
                     cv2.waitKey(0)
 

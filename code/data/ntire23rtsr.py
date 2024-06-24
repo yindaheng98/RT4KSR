@@ -1,6 +1,5 @@
 import os
 import torch
-import pathlib
 import numpy as np
 
 from utils import image

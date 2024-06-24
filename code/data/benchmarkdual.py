@@ -1,14 +1,11 @@
 import os
 import random
 from PIL import Image
-from typing import Tuple, List
-import matplotlib.pyplot as plt
+from typing import Tuple
 
 import torch
 import torch.nn.functional as F
-from torch.utils.data import Dataset
 
-from utils.image import modcrop_tensor
 from data import transforms
 from data.basedataset import BaseDataset
 

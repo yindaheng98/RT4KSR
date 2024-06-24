@@ -1,9 +1,5 @@
-import os
-import numpy as np
 from PIL import Image
-from typing import Tuple, List
-import matplotlib.pyplot as plt
-import skimage.color as sc
+from typing import Tuple
 
 import torch
 from torch.utils.data import Dataset

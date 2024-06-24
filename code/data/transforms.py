@@ -2,7 +2,6 @@ import random
 import numpy as np
 from PIL import Image
 from typing import Tuple, List, Callable
-import matplotlib.pyplot as plt
 
 import torch
 import torchvision.transforms as tf
