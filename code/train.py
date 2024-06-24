@@ -118,7 +118,7 @@ def train(config):
         model.__dict__[config.arch](config)
     ).to(device)
     # Optimizers specified in the torch.optim package
-    optimizer = torch.optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+    optimizer = torch.optim.Adam(net.parameters(), lr=0.0002, weight_decay=0, betas=[0.9, 0.99])
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=config.epoch, eta_min=1e-6)
     loss_fn = torch.nn.MSELoss()
 
