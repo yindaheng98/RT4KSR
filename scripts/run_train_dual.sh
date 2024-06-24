@@ -38,14 +38,14 @@ testsingle() {
 }
 # testsingle coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6 2 # debug
 doboth() {
-    traindual $1 $2 32
-    testdual $1 $2 32
-    trainsingle $1 $2 8
-    testsingle $1 $2 8
+    traindual $1 $2 64
+    testdual $1 $2 64
+    trainsingle $1 $2 64
+    testsingle $1 $2 64
 }
 doall() {
-    trainsingle $1-kmeans-$2 1 32
-    testsingle $1-kmeans-$2 1 32
+    trainsingle $1-kmeans-$2 1 64
+    testsingle $1-kmeans-$2 1 64
     doboth $1-kmeans-$2 2
     doboth $1-kmeans-$2 3
     doboth $1-kmeans-$2 4
