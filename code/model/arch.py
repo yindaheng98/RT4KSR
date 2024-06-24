@@ -86,7 +86,7 @@ class RT4KSR_Rep(nn.Module):
             deep_feats = self.tail(deep_feats)
 
         out = self.upsample(deep_feats)        
-        return out + F.interpolate(x, scale_factor=self.upscale, mode='nearest')
+        return out + F.interpolate(x, scale_factor=self.upscale, mode='bicubic', align_corners=False)
     
     
 ####################################

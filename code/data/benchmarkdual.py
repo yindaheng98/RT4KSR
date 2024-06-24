@@ -76,7 +76,7 @@ class BenchmarkDual(BaseDataset):
             lr, (hr,gr) = self.random_crop(lr, (hr,gr))
 
         x = torch.cat([F.interpolate(lr.unsqueeze(0), scale_factor=self.scale,
-                      mode='bilinear', align_corners=False)[0, ...], gr], dim=0)
+                      mode='bicubic', align_corners=False)[0, ...], gr], dim=0)
 
         return {"lr": x.to(torch.float32), "hr": hr.to(torch.float32)}
 

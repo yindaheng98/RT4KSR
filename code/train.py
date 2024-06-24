@@ -23,7 +23,7 @@ def train_parser():
     parser.add_argument("--batch-size", type=int, default=1)
     parser.add_argument("--crop-size", type=int, default=None)
     parser.add_argument("--epoch", type=int, default=4)
-    parser.add_argument("--num_workers", type=int, default=4)
+    parser.add_argument("--num-workers", type=int, default=4)
 
     # model definitions
     parser.add_argument("--arch", type=str, default="rt4ksr_rep")
