@@ -14,7 +14,7 @@ traindual() {
         --checkpoint-id=$1/${ARCHDUAL}_x"$2" \
         --epoch $3 \
         --batch-size 8 \
-        --crop-size 1176 \
+        --crop-size $4 \
         --num-workers 16
 }
 # traindual coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6 2 # debug
@@ -46,7 +46,7 @@ trainsingle() {
         --checkpoint-id=$1/${ARCHSR}_x"$2" \
         --epoch $3 \
         --batch-size $((4*$2)) \
-        --crop-size 1176 \
+        --crop-size $4 \
         --num-workers 16
 }
 # trainsingle coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6 2 # debug
@@ -66,39 +66,39 @@ testsingle() {
 }
 # testsingle coffee_martini-kmeans-16-scale-12-rot-10-f_dc-6-f_rest-6-opacity-6 2 # debug
 doboth() {
-    traindual $1 $2 64
-    testdual $1 $2 64
-    trainsingle $1 $2 64
-    testsingle $1 $2 64
+    traindual $1 $2 64 $3
+    testdual $1 $2
+    trainsingle $1 $2 64 $3
+    testsingle $1 $2
 }
 doall() {
-    trainsingle $1-kmeans-$2 1 64
-    testsingle $1-kmeans-$2 1 64
-    doboth $1-kmeans-$2 2
-    doboth $1-kmeans-$2 3
-    doboth $1-kmeans-$2 4
+    trainsingle $1-kmeans-$2 1 64 $3
+    testsingle $1-kmeans-$2 1 64 $3
+    # doboth $1-kmeans-$2 2 $3
+    # doboth $1-kmeans-$2 3 $3
+    doboth $1-kmeans-$2 4 $3
 }
 doall_wrap() {
-    doall $1 qp-$7-scale-$2-rot-$3-f_dc-$4-f_rest-$5-opacity-$6
+    doall $1 qp-$3-scale-$4-rot-$5-f_dc-$6-f_rest-$7-opacity-$8 $2
 }
 command() {
-    doall_wrap $1  8  4  4  4 4 8
-    doall_wrap $1 16 16 16 16 4 8
-    doall_wrap $1 14 13 13 13 4 8
-    doall_wrap $1 12 10 10 10 4 8
-    doall_wrap $1 10  7  7  7 4 8
+    doall_wrap $1 $2 8  8  4  4  4 4
+    doall_wrap $1 $2 8 16 16 16 16 4
+    doall_wrap $1 $2 8 14 13 13 13 4
+    doall_wrap $1 $2 8 12 10 10 10 4
+    doall_wrap $1 $2 8 10  7  7  7 4
 }
 # command stnerf-taekwondo
 # command stnerf-walking
 
-command coffee_martini
-command cook_spinach
-command cut_roasted_beef
-command flame_salmon_1
-command flame_steak
-command sear_steak
+command coffee_martini 1176
+command cook_spinach 1176
+command cut_roasted_beef 1176
+command flame_salmon_1 1176
+command flame_steak 1176
+command sear_steak 1152
 
-command discussion
-command stepin
-command trimming
-command vrheadset
+command discussion 672
+command stepin 672
+command trimming 672
+command vrheadset 672

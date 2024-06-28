@@ -54,8 +54,8 @@ class BaseDataset(Dataset):
 
     def random_crop(self, lr, hrs):
         lr_crop_size = self.crop_size // self.scale
-        assert lr.shape[-2] >= lr_crop_size
-        assert lr.shape[-1] >= lr_crop_size
+        assert lr.shape[-2] >= lr_crop_size, ValueError(f"crop size: {self.crop_size}, lr crop size: {lr_crop_size}, lr shape: {lr.shape}")
+        assert lr.shape[-1] >= lr_crop_size, ValueError(f"crop size: {self.crop_size}, lr crop size: {lr_crop_size}, lr shape: {lr.shape}")
         x0 = random.randint(0, lr.shape[-2]-lr_crop_size)
         y0 = random.randint(0, lr.shape[-1]-lr_crop_size)
         x1 = x0+lr_crop_size
