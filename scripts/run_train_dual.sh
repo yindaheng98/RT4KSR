@@ -74,8 +74,8 @@ doboth() {
 doall() {
     trainsingle $1-kmeans-$2 1 64 $3
     testsingle $1-kmeans-$2 1 64 $3
-    # doboth $1-kmeans-$2 2 $3
-    # doboth $1-kmeans-$2 3 $3
+    doboth $1-kmeans-$2 2 $3
+    doboth $1-kmeans-$2 3 $3
     doboth $1-kmeans-$2 4 $3
 }
 doall_wrap() {
