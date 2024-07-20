@@ -2,6 +2,7 @@ import argparse
 import os
 import cv2
 import shutil
+import re
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--hrsrcroot", type=str, required=True)  # Full NeRF output
@@ -10,6 +11,7 @@ parser.add_argument("--crsrcroot", type=str, required=True)  # Low-quality color
 parser.add_argument("--dataroot", type=str, required=True)
 parser.add_argument("--name", type=str, required=True)
 parser.add_argument("--valratio", type=int, default=4)
+parser.add_argument("--match", type=str, default=r"[0-9]+.png")
 
 if __name__ == "__main__":
     args = parser.parse_args()
@@ -27,6 +29,8 @@ if __name__ == "__main__":
     os.makedirs(cr_val_dir_path, exist_ok=True)
     i = 0
     for entry in os.scandir(args.hrsrcroot):
+        if not re.match(args.match, entry.name):
+            continue
         hr_dir_path = hr_train_dir_path
         gr_dir_path = gr_train_dir_path
         cr_dir_path = cr_train_dir_path
