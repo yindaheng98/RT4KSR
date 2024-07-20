@@ -69,6 +69,38 @@
             ]
         },
         {
+            "name": "test NeRFout x1 Dual",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "code/test.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--dataroot=data/coffee_martini-kmeans-qp-none-scale-16-rot-16-f_dc-16-f_rest-16-opacity-4-warped",
+                "--scale=1",
+                "--arch=nerfrt4ksr_rep",
+                "--benchmark=nerfoutdual_train",
+                "--checkpoint-id=nerfrt4ksr_x1_dual_rep_model",
+                "--show"
+            ]
+        },
+        {
+            "name": "train NeRFout x1 Dual",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "code/train.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--dataroot=data/coffee_martini-kmeans-qp-none-scale-16-rot-16-f_dc-16-f_rest-16-opacity-4-warped",
+                "--scale=1",
+                "--arch=nerfrt4ksr_rep",
+                "--benchmark=nerfoutdual_train",
+                "--checkpoint-id=nerfrt4ksr_x1_dual",
+                "--batch-size=8",
+                "--crop-size=1176",
+                "--epoch=128"
+            ]
+        },
+        {
             "name": "test NeRFout x2 Dual",
             "type": "debugpy",
             "request": "launch",

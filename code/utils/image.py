@@ -6,7 +6,6 @@ import cv2
 from torchvision.utils import make_grid
 from datetime import datetime
 # import torchvision.transforms as transforms
-import matplotlib.pyplot as plt
 
 '''
 modified by Kai Zhang (github: https://github.com/cszn)
@@ -27,6 +26,7 @@ def get_timestamp():
 
 
 def imshow(x, title=None, cbar=False, figsize=None):
+    import matplotlib.pyplot as plt
     plt.figure(figsize=figsize)
     plt.imshow(np.squeeze(x), interpolation='nearest', cmap='gray')
     if title:
