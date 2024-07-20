@@ -12,6 +12,7 @@ parser.add_argument("--dataroot", type=str, required=True)
 parser.add_argument("--name", type=str, required=True)
 parser.add_argument("--valratio", type=int, default=4)
 parser.add_argument("--match", type=str, default=r"[0-9]+.png")
+parser.add_argument("--skipresize", action="store_true")
 
 if __name__ == "__main__":
     args = parser.parse_args()
@@ -51,6 +52,10 @@ if __name__ == "__main__":
         shutil.copyfile(hrsrc, hrdst)
         shutil.copyfile(grsrc, grdst)
         shutil.copyfile(crsrc, crdst)
+        if args.skipresize:
+            print("------")
+            i += 1
+            continue
         hr = cv2.imread(hrsrc)
         for scale in [2, 3, 4]:
             lr_dir_path = os.path.join(args.dataroot, "testsets", args.name, "train", f"LR_bicubic_x{scale}")
