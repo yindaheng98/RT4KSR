@@ -17,4 +17,19 @@ traindual() {
         --crop-size $3 \
         --num-workers 16
 }
-traindual coffee_martini-kmeans-qp-none-scale-16-rot-16-f_dc-16-f_rest-16-opacity-4-warped 64 1176 # debug
+# traindual coffee_martini-kmeans-qp-none-scale-16-rot-16-f_dc-16-f_rest-16-opacity-4-warped 64 1176 # debug
+testdual() {
+    if [ -e "srresults/$1-nerfoutdual-x1.json" ]; then
+        echo "skip srresults/$1-nerfoutdual-x1.json"
+        return 0
+    fi
+    # echo \
+    python code/test.py \
+        --dataroot=data/$1 \
+        --scale=1 \
+        --arch=$ARCHDUAL \
+        --benchmark=nerfoutdual \
+        --checkpoint-id=$1/${ARCHDUAL}_x1_rep_model \
+        --save-results=srresults/$1-nerfoutdual-x1.json
+}
+testdual coffee_martini-kmeans-qp-none-scale-16-rot-16-f_dc-16-f_rest-16-opacity-4-warped
