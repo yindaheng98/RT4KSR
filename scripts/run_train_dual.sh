@@ -45,4 +45,26 @@ doall() {
 doall_wrap() {
     doall $1 qp-none-scale-$3-rot-$4-f_dc-$5-f_rest-$6-opacity-$7 $2
 }
-doall_wrap coffee_martini 1176 16 16 16 16 4
+# doall_wrap coffee_martini 1176 16 16 16 16 4
+command() {
+    doall_wrap $1 $2 8  8  4  4  4 4
+    doall_wrap $1 $2 8 16 16 16 16 4
+    doall_wrap $1 $2 8 14 13 13 13 4
+    doall_wrap $1 $2 8 12 10 10 10 4
+    doall_wrap $1 $2 8 10  7  7  7 4
+}
+
+command coffee_martini 1176
+command cook_spinach 1176
+command cut_roasted_beef 1176
+command flame_salmon_1 1176
+command flame_steak 1176
+command sear_steak 1152
+
+command discussion 672
+command stepin 672
+command trimming 672
+command vrheadset 672
+
+command taekwondo 958
+command walking 1106
