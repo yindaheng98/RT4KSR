@@ -48,11 +48,11 @@ doall_wrap() {
 }
 # doall_wrap coffee_martini 1176 16 16 16 16 4
 command() {
-    doall_wrap $1 $2 8  8  4  4  4 4
-    doall_wrap $1 $2 8 16 16 16 16 4
-    doall_wrap $1 $2 8 14 13 13 13 4
-    doall_wrap $1 $2 8 12 10 10 10 4
-    doall_wrap $1 $2 8 10  7  7  7 4
+    doall_wrap $1 $2  8  4  4  4 4
+    doall_wrap $1 $2 16 16 16 16 4
+    doall_wrap $1 $2 14 13 13 13 4
+    doall_wrap $1 $2 12 10 10 10 4
+    doall_wrap $1 $2 10  7  7  7 4
 }
 
 command coffee_martini 1176
