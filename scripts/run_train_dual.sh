@@ -39,6 +39,7 @@ doboth() {
 }
 # doboth coffee_martini-kmeans-qp-none-scale-16-rot-16-f_dc-16-f_rest-16-opacity-4-warped 1176
 doall() {
+    doboth $1-kmeans-$2-nowarp $3
     doboth $1-kmeans-$2-warped $3
     doboth $1-kmeans-$2-warpednoee $3
 }
