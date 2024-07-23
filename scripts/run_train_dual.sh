@@ -67,5 +67,5 @@ command stepin 672
 command trimming 672
 command vrheadset 672
 
-command taekwondo 958
-command walking 1106
+command taekwondo 910
+command walking 848
