@@ -76,6 +76,7 @@ command() {
     doall_wrap $1 $2 14 13 13 13 4
     doall_wrap $1 $2 12 10 10 10 4
     doall_wrap $1 $2 10  7  7  7 4
+    doboth $1-kmeans-merge-warped $2
 }
 
 command coffee_martini 1176
