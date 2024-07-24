@@ -38,6 +38,26 @@ doboth() {
     testdual $1
 }
 # doboth coffee_martini-kmeans-qp-none-scale-16-rot-16-f_dc-16-f_rest-16-opacity-4-warped 1176
+merge() {
+    link() {
+        mkdir -p $2
+        for i in $(ls $1); do
+            rm $2/$i.$3.png
+            ln -s $PWD/$1/$i $2/$i.$3.png
+        done
+    }
+    linkdataset() {
+        link $1/Gray $2/Gray $3
+        link $1/HR $2/HR $3
+        link $1/LR_bicubic_x1 $2/LR_bicubic_x1 $3
+    }
+    linkbothset() {
+        linkdataset $1/testsets/nerfout/train $2/testsets/nerfout/train $3
+        linkdataset $1/testsets/nerfout/val $2/testsets/nerfout/val $3
+    }
+    linkbothset data/$1-kmeans-$2-warped data/$1-kmeans-merge-warped $2
+}
+# merge coffee_martini qp-none-scale-16-rot-16-f_dc-16-f_rest-16-opacity-4
 doall() {
     doboth $1-kmeans-$2-nowarp $3
     doboth $1-kmeans-$2-warped $3
