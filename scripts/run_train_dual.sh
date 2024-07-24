@@ -42,7 +42,9 @@ merge() {
     link() {
         mkdir -p $2
         for i in $(ls $1); do
-            rm $2/$i.$3.png
+            if [ -e "$2/$i.$3.png" ]; then
+                rm $2/$i.$3.png
+            fi
             ln -s $PWD/$1/$i $2/$i.$3.png
         done
     }
@@ -62,6 +64,7 @@ doall() {
     doboth $1-kmeans-$2-nowarp $3
     doboth $1-kmeans-$2-warped $3
     doboth $1-kmeans-$2-warpednoee $3
+    merge $1 $2
 }
 doall_wrap() {
     doall $1 qp-none-scale-$3-rot-$4-f_dc-$5-f_rest-$6-opacity-$7 $2
